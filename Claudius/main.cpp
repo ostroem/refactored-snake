@@ -129,6 +129,8 @@ int main()
 			{
 			case SDL_QUIT: running = false; break;
 			case SDL_KEYDOWN: game.OnKeyDown(e.key.keysym.sym); break;
+			default:
+				break;
 			}
 		}
 
