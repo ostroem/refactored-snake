@@ -1,12 +1,14 @@
 #pragma once
 
-struct Color
-{
-	unsigned char r, g, b, a;
+class Color {
+public:
+	Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a) noexcept: r(r), g(g), b(b), a(a)
+	{
+	}
 
-	Color();
-	Color(const Color& rhs);
-	Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
-
-	void SetColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+private:
+	unsigned char r{ };
+	unsigned char g{ };
+	unsigned char b{ };
+	unsigned char a{ };
 };

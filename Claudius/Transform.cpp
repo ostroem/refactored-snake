@@ -1,33 +1,23 @@
 #include "Transform.h"
 
-Transform::Transform(const Transform& rhs) : position(rhs.position), rotation(rhs.rotation)
+Transform::Transform(const Transform& rhs) : position(rhs.position)
 {
 }
 
-Transform::Transform(float x, float y, float rotation) : position(x,y), rotation(rotation)
+Transform::Transform(int x, int y, int rotation) : position(x,y)
 {
 }
 
-void Transform::SetPosition(const float x, const float y)
+void Transform::SetPosition(const int x, const int y)
 {
 	position.x = x;
 	position.y = y;
 }
 
-void Transform::ChangePosition(const float x, const float y)
+void Transform::ChangePosition(const int x, const int y)
 {
 	position.x += x;
 	position.y += y;
-}
-
-void Transform::SetRotation(const float rotation)
-{
-	this->rotation = rotation;
-}
-
-void Transform::ChangeRotation(const float rotation)
-{
-	this->rotation += rotation;
 }
 
 Vector2Int Transform::GetPosition()
@@ -35,17 +25,12 @@ Vector2Int Transform::GetPosition()
 	return position;
 }
 
-float Transform::GetX()
+int Transform::GetX()
 {
 	return position.x;
 }
 
-float Transform::GetY()
+int Transform::GetY()
 {
 	return position.y;
-}
-
-float Transform::GetRotation()
-{
-	return rotation;
 }
