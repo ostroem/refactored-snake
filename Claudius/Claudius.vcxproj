@@ -164,6 +164,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Vector2Int.h" />

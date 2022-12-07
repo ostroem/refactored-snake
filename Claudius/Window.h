@@ -3,9 +3,13 @@
 #include <memory>
 #include <assert.h>
 struct Window {
-	Window() noexcept {
-		window = SDL_CreateWindow("Base", 0, 0, 0, 0, SDL_WindowFlags::SDL_WINDOW_RESIZABLE);
+	Window(std::string title, unsigned int width, unsigned int height) noexcept {
+		window = SDL_CreateWindow(title.c_str(), 0, 0, width, height, 0);
 		assert(window != nullptr);
 	}
+	~Window() {
+		SDL_DestroyWindow(window);
+	}
+
 	SDL_Window* window;
 };
