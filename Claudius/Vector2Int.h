@@ -5,8 +5,6 @@ struct Vector2Int
 	int x {}; 
 	int y {};
 
-	Vector2Int(int x, int y) noexcept : x(x), y(y) { };
-
 	Vector2Int operator+(const Vector2Int& rhs) const noexcept { return Vector2Int(x + rhs.x, y + rhs.y); }
 	Vector2Int operator-(const Vector2Int& rhs) const noexcept { return Vector2Int(x - rhs.x, y - rhs.y); };
 	Vector2Int operator*(const Vector2Int& rhs) const noexcept { return Vector2Int(x * rhs.x, y * rhs.y); };

@@ -2,8 +2,6 @@
 #include "RenderManager.h"
 #include "ResourceManager.h"
 #include "Game.h"
-#include "Sprite.h"
-#include "Transform.h"
 #include "Image.h"
 #include "Window.h"
 
@@ -25,19 +23,13 @@ struct ResourceImpl
 	}
 };
 
-void RenderManager::Render(const Sprite& sprite, const Transform& trans)
+void RenderManager::Render(const Vector2Int& pos, const Rectangle& rect, const Color& color)
 {
-	spriteEntries.push_back({ sprite, trans });
-}
-
-void RenderManager::Render(const Rectangle& rect, const Color& color, const Transform& trans)
-{
-	rectEntries.push_back({ rect, color, trans });
+	rectEntries.push_back({ pos, rect, color });
 }
 
 void RenderManager::Clear()
 {
-	spriteEntries.clear();
 	rectEntries.clear();
 }
 
@@ -89,32 +81,11 @@ int main()
 
 		SDL_SetRenderDrawColor(renderer,0,0,0,0);
 		SDL_RenderClear(renderer);
-		for (auto &&entry : renderManager.spriteEntries)
-		{
-			if (entry.sprite.image != nullptr)
-			{
-				SDL_Rect src{ entry.sprite.source.x, entry.sprite.source.y, entry.sprite.source.w, entry.sprite.source.h };
-				SDL_Rect dst{ entry.trans.position.x,
-							  entry.trans.position.y,
-							  entry.sprite.image->width,
-							  entry.sprite.image->height };
-				SDL_RenderCopy(renderer, resourceImpl.GetTexture(entry.sprite.image->id), &src, &dst);
-			}
-			else
-			{
-				SDL_SetRenderDrawColor(renderer, entry.sprite.color.r, entry.sprite.color.g, entry.sprite.color.b, entry.sprite.color.a);
-				SDL_Rect rect{ entry.trans.position.x,
-							   entry.trans.position.y,
-							   entry.sprite.source.w,
-							   entry.sprite.source.h };
-				SDL_RenderDrawRect(renderer, &rect);
-			}
-		}
-		for (auto&& entry : renderManager.rectEntries)
+		for (auto& entry : renderManager.rectEntries)
 		{
 			SDL_SetRenderDrawColor(renderer, entry.color.r, entry.color.g, entry.color.b, entry.color.a);
-			SDL_Rect rect{ entry.trans.position.x,
-						   entry.trans.position.y,
+			SDL_Rect rect{ entry.position.x,
+						   entry.position.y,
 						   entry.rect.w,
 						   entry.rect.h };
 			//SDL_RenderDrawRect(renderer, &rect);	// <- If you want to draw the "outline" of the rectangle.

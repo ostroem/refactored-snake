@@ -1,6 +1,6 @@
 #pragma once		// #pragma once == Compile this file once.
 
-#include "Transform.h"
+#include "Vector2Int.h"
 #include "Color.h"
 #include "Rectangle.h"
 #include "SDL_keycode.h"
@@ -11,7 +11,7 @@ struct Player
 {
 	struct PlayerPart
 	{
-		Transform trans;
+		Vector2Int position;
 		Color color;
 		Rectangle rect;
 	};
@@ -20,7 +20,7 @@ struct Player
 	static const int player_size = 50;
 	PlayerPart parts[player_size];
 	
-	Transform trans;
+	Vector2Int position;
 	Color color;
 	Rectangle rect;
 	void OnKeyDown(SDL_Keycode key);
@@ -31,8 +31,6 @@ struct Player
 
 	int size = 10;
 	const float movement_speed = 10.0f;
-	const float starting_x = 300.0f;
-	const float starting_y = 300.0f;
 
 	bool moving_right = false;
 	bool moving_left = false;

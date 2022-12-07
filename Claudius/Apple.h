@@ -2,20 +2,23 @@
 
 #include "Rectangle.h"
 #include "Color.h"
-#include "Transform.h"
+#include "Vector2Int.h"
 
 struct RenderManager; //<- Kinda like #include "RenderManager.h", not exactly. Can't use functions. Google forward declaration.
 
-struct Apple
+class Apple
 {
-
-	Apple();
+public:
 	void Render(RenderManager& renderManager);
-	void Initialize(unsigned int width, unsigned int height);
+	Vector2Int get_position() const noexcept { return position; }
+	void set_position(int x, int y) noexcept { position.x = x; position.y = y; }
 
-	Rectangle rect;
-	Color color;
-	Transform trans;
+
+
+private:
+	Rectangle rect { 0, 0, 10, 10 };
+	Color color { 255, 0, 0, 0};
+	Vector2Int position { 0, 0 };
 
 	bool new_apple = false;
 };

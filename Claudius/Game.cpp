@@ -6,9 +6,7 @@
 
 Game::Game(ResourceManager& resourceManager) : m_resourceManager(resourceManager), width(1250), height(700)
 {
-	//Player test, moving two players to collide with each other.
-	playerOne.Initialize();
-	apple.Initialize(10, 10);
+	player.Initialize();
 }
 
 Game::~Game()
@@ -33,44 +31,44 @@ void Game::Update(double dt)
 	// timer = 0.0f; or timer -= updateInterval;
 	//}
 
-	playerOne.Update(dt);
+	player.Update(dt);
 
 	// Player colliding on theirself.
-	for (int i = 0; i < playerOne.player_score; i++)
+	for (int i = 0; i < player.player_score; i++)
 	{
-		if (playerOne.trans.GetPosition() == playerOne.parts[i].trans.GetPosition())
+		if (player.position == player.parts[i].position)
 		{
-			playerOne.ResetPlayer();
+			player.ResetPlayer();
 		}
 	}
 
 	// Player going out of X bounds.
-	if (playerOne.trans.GetX() > width || playerOne.trans.GetX() < 0)
+	if (player.position.x > width || player.position.x < 0)
 	{
-		playerOne.ResetPlayer();
+		player.ResetPlayer();
 	}
 
 	// Player going out of Y bounds.
-	if (playerOne.trans.GetY() > height || playerOne.trans.GetY() < 0)
+	if (player.position.y > height || player.position.y < 0)
 	{
-		playerOne.ResetPlayer();
+		player.ResetPlayer();
 	}
 
 	// Player collide on apple.
-	if (playerOne.trans.GetPosition() == apple.trans.GetPosition())
+	if (player.position == apple.get_position())
 	{
-		playerOne.player_score++;
-		apple.trans.SetPosition((rand() % 125) * 10.0f, (rand() % 70) * 10.0f);
+		player.player_score++;
+		apple.set_position((rand() % 125) * 10.0f, (rand() % 70) * 10.0f);
 	}
 }
 
 void Game::Render(RenderManager& renderManager)
 {
-	playerOne.Render(renderManager);
+	player.Render(renderManager);
 	apple.Render(renderManager);
 }
 
 void Game::OnKeyDown(SDL_Keycode key)
 {
-	playerOne.OnKeyDown(key);
+	player.OnKeyDown(key);
 }

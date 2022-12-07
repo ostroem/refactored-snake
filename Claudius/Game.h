@@ -11,17 +11,12 @@ struct ResourceManager;
 
 class Game
 {
-	Player playerOne;
+	Player player;
 	Apple apple;
 
 	ResourceManager& m_resourceManager;
 
 public:
-	//Teemu Code Begin.
-
-	// float timer; <- can be used in delta time
-	// float updateInterval; <- check Game.h
-
 	int width;
 	int height;
 
