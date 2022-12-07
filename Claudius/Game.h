@@ -2,9 +2,9 @@
 
 #include <string>
 #include <vector>
-#include "KeyCode.h"
 #include "Apple.h"
 #include "Player.h"
+#include "SDL_keycode.h"
 
 struct RenderManager;
 struct ResourceManager;
@@ -30,6 +30,5 @@ public:
 	bool Enter(int& width, int& height, std::string& title);
 	void Update(double dt);
 	void Render(RenderManager& rendererManager);
-	void OnKeyDown(KeyCode key);
-	void OnKeyUp(KeyCode key);
+	void OnKeyDown(SDL_Keycode key);
 };
