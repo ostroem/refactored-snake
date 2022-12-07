@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Vector2.h"
+#include "Vector2Int.h"
 
 struct Transform
 {
-	Transform();
 	Transform(const Transform& rhs);
 	Transform(float x, float y, float rotation);
 	
@@ -13,11 +12,11 @@ struct Transform
 	void SetRotation(const float rotation);
 	void ChangeRotation(const float rotation);
 
-	Vector2 GetPosition();
+	Vector2Int GetPosition();
 	float GetX();
 	float GetY();
 	float GetRotation();
 
-	Vector2 position;
+	Vector2Int position;
 	float rotation;
 };

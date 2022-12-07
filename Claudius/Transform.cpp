@@ -1,9 +1,5 @@
 #include "Transform.h"
 
-Transform::Transform() : position(), rotation(0.0f)
-{
-}
-
 Transform::Transform(const Transform& rhs) : position(rhs.position), rotation(rhs.rotation)
 {
 }
@@ -34,7 +30,7 @@ void Transform::ChangeRotation(const float rotation)
 	this->rotation += rotation;
 }
 
-Vector2 Transform::GetPosition()
+Vector2Int Transform::GetPosition()
 {
 	return position;
 }
