@@ -13,15 +13,15 @@ Game::~Game()
 {
 }
 
-bool Game::Enter(int& width, int& height, std::string& title)
+bool Game::Enter(int& w, int& h, std::string& title)
 {
-	width = this->width;	//1250
-	height = this->height;	// 700
+	w = this->width;	//1250
+	h = this->height;	// 700
 	title = "Snake";
 	return true;
 }
 
-void Game::Update(double dt)
+void Game::Update()
 {
 	// dt means delta time.
 	// timer += dt; <- check Game.h
@@ -31,7 +31,7 @@ void Game::Update(double dt)
 	// timer = 0.0f; or timer -= updateInterval;
 	//}
 
-	player.Update(dt);
+	player.Update();
 
 	// Player colliding on theirself.
 	for (int i = 0; i < player.player_score; i++)
@@ -58,7 +58,7 @@ void Game::Update(double dt)
 	if (player.position == apple.get_position())
 	{
 		player.player_score++;
-		apple.set_position((rand() % 125) * 10.0f, (rand() % 70) * 10.0f);
+		apple.set_position((rand() % 125) * 10, (rand() % 70) * 10);
 	}
 }
 

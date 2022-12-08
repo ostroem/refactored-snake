@@ -2,7 +2,6 @@
 #include "RenderManager.h"
 #include "ResourceManager.h"
 #include "Game.h"
-#include "Image.h"
 #include "Window.h"
 #include "Renderer.h"
 
@@ -37,22 +36,22 @@ int main()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	Window window { "Snake", 500, 500 };
+	Window window { "Snake", 1280, 720 };
 	Renderer renderer { window };
 	bool running = true;
 	
+	assert(window.window != nullptr);
 	RenderManager renderManager;
 	ResourceImpl resourceImpl(renderer.renderer);
 	ResourceManager resourceManager(resourceImpl);
 	Game game(resourceManager);
 
-	//int width = 500;
-	//int height = 500;
-	//std::string title = "";
-	//game.Enter(width, height, title);
-	//SDL_SetWindowPosition(window.window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+	int width = 500;
+	int height = 500;
+	std::string title = "";
+	game.Enter(width, height, title);
+	SDL_SetWindowPosition(window.window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 	
-	float dt = 1.0f / 60.0f;
 	while (running)
 	{
 		SDL_Event e;
@@ -67,7 +66,7 @@ int main()
 			}
 		}
 
-		game.Update(dt);
+		game.Update();
 		game.Render(renderManager);
 
 		renderer.set_draw_color(0, 0, 0, 0);
@@ -85,6 +84,7 @@ int main()
 		renderManager.Clear();
 		SDL_Delay(1000 / 20); //<- "Framerate".
 	}
+	window.close();
 
 	return 0;
 }

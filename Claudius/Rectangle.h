@@ -7,9 +7,9 @@ struct Rectangle
 	int w{}; 
 	int h{};
 
-	Rectangle();
-	Rectangle(const Rectangle& rhs);
-	Rectangle(int x, int y, int w, int h);
+	Rectangle() noexcept;
+	Rectangle(const Rectangle& rhs) noexcept;
+	Rectangle(int x, int y, int w, int h) noexcept;
 
-	void SetBounds(int x, int y, int w, int h);
+	//void SetBounds(int x, int y, int w, int h);
 };

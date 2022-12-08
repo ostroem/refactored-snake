@@ -2,18 +2,16 @@
 
 #include <vector>
 #include "Vector2Int.h"
-
-struct Sprite;
-struct Rectangle;
-struct Color;
+#include "Rectangle.h"
+#include "Color.h"
 
 struct RenderManager
 {
 	struct RectEntry
 	{
-		Vector2Int position;
-		Rectangle rect;
-		Color color;
+		Vector2Int position{};
+		Rectangle rect{};
+		Color color{};
 	};
 
 	void Render(const Vector2Int& pos, const Rectangle& rect, const Color& color);

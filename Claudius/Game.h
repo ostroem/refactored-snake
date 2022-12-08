@@ -17,13 +17,13 @@ class Game
 	ResourceManager& m_resourceManager;
 
 public:
-	int width;
-	int height;
+	int width { 0 };
+	int height { 0 };
 
 	Game(ResourceManager& resourceManager);
 	~Game();
-	bool Enter(int& width, int& height, std::string& title);
-	void Update(double dt);
+	bool Enter(int& w, int& h, std::string& title);
+	void Update();
 	void Render(RenderManager& rendererManager);
 	void OnKeyDown(SDL_Keycode key);
 };
