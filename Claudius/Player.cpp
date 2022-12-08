@@ -1,7 +1,5 @@
 #include "Player.h"
-#include <cmath>
 #include "RenderManager.h"
-#include <iostream>
 #include <algorithm>
 
 void Player::Initialize()
