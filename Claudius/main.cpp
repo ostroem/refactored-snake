@@ -82,7 +82,7 @@ int main()
 		}
 		renderer.present();
 		renderManager.Clear();
-		SDL_Delay(1000 / 20); //<- "Framerate".
+		SDL_Delay(100);
 	}
 	window.close();
 

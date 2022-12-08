@@ -40,42 +40,42 @@ void Player::Update()
 
 	if (direction == directions::left)
 	{
-		position = { -1, 0 };
-		parts[0].position = { x_difference[0], y_difference[0] };
+		position = position + Vector2Int(-1, 0);
+		parts[0].position = parts[0].position + Vector2Int(x_difference[0], y_difference[0]);
 
 		for (int i = 1; i < player_size; i++)
 		{
-			parts[i].position = { x_difference[i - 1], y_difference[i - 1] };
+			parts[i].position = parts[i].position + Vector2Int(x_difference[i - 1], y_difference[i - 1]);
 		}
 	}
 	else if (direction == directions::right)
 	{
-		position = { 1, 0 };
-		parts[0].position = { x_difference[0], y_difference[0] };
+		position = position + Vector2Int(1, 0);
+		parts[0].position = parts[0].position + Vector2Int(x_difference[0], y_difference[0]);
 
 		for (int i = 1; i < player_size; i++)
 		{
-			parts[i].position = { x_difference[i - 1], y_difference[i - 1] };
+			parts[i].position = parts[i].position + Vector2Int(x_difference[i - 1], y_difference[i - 1]);
 		}
 	}
 	else if (direction == directions::up)
 	{
-		position = { 0, -1 };
-		parts[0].position = { x_difference[0], y_difference[0] };
+		position = position + Vector2Int(0, -1);
+		parts[0].position = parts[0].position + Vector2Int(x_difference[0], y_difference[0]);
 
 		for (int i = 1; i < player_size; i++)
 		{
-			parts[i].position = { x_difference[i - 1], y_difference[i - 1] };
+			parts[i].position = parts[i].position + Vector2Int(x_difference[i - 1], y_difference[i - 1]);
 		}
 	}
 	else if (direction == directions::down)
 	{
-		position = { 0, 1 };
-		parts[0].position = { x_difference[0], y_difference[0] };
+		position = position + Vector2Int(0, 1);
+		parts[0].position = parts[0].position + Vector2Int(x_difference[0], y_difference[0]);
 
 		for (int i = 1; i < player_size; i++)
 		{
-			parts[i].position = { x_difference[i - 1], y_difference[i - 1] };
+			parts[i].position = parts[i].position + Vector2Int(x_difference[i - 1], y_difference[i - 1]);
 		}
 	}
 }
