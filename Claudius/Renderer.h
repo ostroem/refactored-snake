@@ -1,26 +1,34 @@
 #pragma once
 #include "Window.h"
+#include <stdexcept>
 struct Renderer {
 
-	Renderer(const Window& window) noexcept {
+	Renderer(const Window& window) {
 		renderer = SDL_CreateRenderer(window.window, -1, SDL_RendererFlags::SDL_RENDERER_ACCELERATED);
-		assert(renderer != nullptr);
+		if (renderer == nullptr) {
+			throw std::runtime_error(SDL_GetError());
+		}
 	}
 	~Renderer() {
 		SDL_DestroyRenderer(renderer);
 	}
 
-	void set_draw_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+	Renderer(const Renderer& other) = delete;
+	Renderer(const Renderer&& other) = delete;
+	Renderer& operator=(const Renderer& other) = delete;
+	Renderer& operator=(const Renderer&& other) = delete;
+
+	void set_draw_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const noexcept {
 		SDL_SetRenderDrawColor(renderer, r, g, b, a);
 	}
 
-	void clear() {
+	void clear() const noexcept {
 		SDL_RenderClear(renderer);
 	}
-	void present() {
+	void present() const noexcept {
 		SDL_RenderPresent(renderer);
 	}
-	void render_fillrect(const SDL_Rect& rect) {
+	void render_fillrect(const SDL_Rect& rect) const noexcept {
 		SDL_RenderFillRect(renderer, &rect);
 	}
 
