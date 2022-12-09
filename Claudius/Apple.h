@@ -17,7 +17,7 @@ public:
 
 private:
 	Rectangle rect { 0, 0, 10, 10 };
-	Color color { 255, 0, 0, 0};
+	Color color { 255, 0, 0, 0 };
 	Vector2Int position { 0, 0 };
 
 	bool new_apple = false;

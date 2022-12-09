@@ -15,10 +15,17 @@ struct Entity
 	Rectangle rect {};
 };
 
-struct Player
+class Player : Entity
 {
-	Player() = default;
+public:
+	Player() noexcept;
 
+	void OnKeyDown(SDL_Keycode key);
+	void Render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.
+	void Update();
+	void ResetPlayer();
+	Vector2Int get_position() const noexcept { return position; }
+private:
 	enum class directions {
 		up,
 		down,
@@ -26,26 +33,13 @@ struct Player
 		right
 	};
 	directions direction;
-
-	//Static == belongs to the class, not the object of the class.
-	static const int player_size = 50;
+public:
 	std::array<Entity, 50> parts;
-	
-	Vector2Int position;
-	Color color;
-	Rectangle rect;
-	void OnKeyDown(SDL_Keycode key);
-	void Initialize();
-	void Render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.
-	void Update();
-	void ResetPlayer();
-
-	int size = 10;
-	const float movement_speed = 10.0f;
+private:
+	const int player_size;
+	const int movement_speed;
 
 	bool new_snake = false;
 	std::array<int, 50> x_difference;
 	std::array<int, 50> y_difference;
-
-	int player_score = 0;
 };

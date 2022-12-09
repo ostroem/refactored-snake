@@ -82,9 +82,9 @@ int main()
 		}
 		renderer.present();
 		renderManager.Clear();
-		SDL_Delay(100);
+		SDL_Delay(1000 / 20);
 	}
-	window.close();
+	//window.close();
 
 	return 0;
 }

@@ -19,6 +19,7 @@ class Game
 public:
 	int width { 0 };
 	int height { 0 };
+	int score { 0 };
 
 	Game(ResourceManager& resourceManager);
 	~Game();

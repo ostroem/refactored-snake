@@ -7,9 +7,13 @@ struct Window {
 		window = SDL_CreateWindow(title.c_str(), 0, 0, width, height, 0);
 		assert(window != nullptr);
 	}
-	void close() {
+	~Window() {
 		SDL_DestroyWindow(window);
 	}
+	Window(const Window& other) = delete;
+	Window(const Window&& other) = delete;
+	Window& operator=(const Window& other) = delete;
+	Window& operator=(const Window&& other) = delete;
 
 	SDL_Window* window;
 };

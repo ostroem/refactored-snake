@@ -2,26 +2,19 @@
 #include "RenderManager.h"
 #include <algorithm>
 
-void Player::Initialize()
+Player::Player() noexcept
+		: direction(directions::down), player_size(50), movement_speed(10),
+		parts({ }), new_snake(false), x_difference({ }), y_difference({ })
 {
+	position = { 100, 200 };
 	color = { 0, 255, 0, 255 };
 	rect = { 0, 0, 10, 10 };
-	position = { 100, 200 };
-	player_score = 0;
-
-	for (auto& part : parts)
-	{
-		part.color = { 255, 0, 0, 0 };
-		part.rect = { 0, 0, 10, 10 };
-		part.position = { };
-	}
 }
-
 void Player::Render(RenderManager& renderManager)
 {
 	renderManager.Render(position, rect, color);
 
-	for (int i = 0; i < player_score; i++)
+	for (int i = 0; i < 50; i++)
 	{
 		renderManager.Render(parts[i].position, parts[i].rect, parts[i].color);
 	}
@@ -40,7 +33,7 @@ void Player::Update()
 
 	if (direction == directions::left)
 	{
-		position = position + Vector2Int(-1, 0);
+		position = position + Vector2Int(-movement_speed, 0);
 		parts[0].position = parts[0].position + Vector2Int(x_difference[0], y_difference[0]);
 
 		for (int i = 1; i < player_size; i++)
@@ -50,7 +43,7 @@ void Player::Update()
 	}
 	else if (direction == directions::right)
 	{
-		position = position + Vector2Int(1, 0);
+		position = position + Vector2Int(movement_speed, 0);
 		parts[0].position = parts[0].position + Vector2Int(x_difference[0], y_difference[0]);
 
 		for (int i = 1; i < player_size; i++)
@@ -60,7 +53,7 @@ void Player::Update()
 	}
 	else if (direction == directions::up)
 	{
-		position = position + Vector2Int(0, -1);
+		position = position + Vector2Int(0, -movement_speed);
 		parts[0].position = parts[0].position + Vector2Int(x_difference[0], y_difference[0]);
 
 		for (int i = 1; i < player_size; i++)
@@ -70,7 +63,7 @@ void Player::Update()
 	}
 	else if (direction == directions::down)
 	{
-		position = position + Vector2Int(0, 1);
+		position = position + Vector2Int(0, movement_speed);
 		parts[0].position = parts[0].position + Vector2Int(x_difference[0], y_difference[0]);
 
 		for (int i = 1; i < player_size; i++)
@@ -102,7 +95,6 @@ void Player::OnKeyDown(SDL_Keycode key)
 
 void Player::ResetPlayer()
 {
-	player_score = 0;
 	direction = directions::right;
 
 	position = { 100, 200 };

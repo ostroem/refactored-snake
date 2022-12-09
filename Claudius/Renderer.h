@@ -2,7 +2,7 @@
 #include "Window.h"
 struct Renderer {
 
-	Renderer(Window window) noexcept {
+	Renderer(const Window& window) noexcept {
 		renderer = SDL_CreateRenderer(window.window, -1, SDL_RendererFlags::SDL_RENDERER_ACCELERATED);
 		assert(renderer != nullptr);
 	}
