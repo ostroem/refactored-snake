@@ -162,7 +162,7 @@
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderManager.h" />
-    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SDL_System.h" />
     <ClInclude Include="Vector2Int.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

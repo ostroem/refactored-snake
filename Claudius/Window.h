@@ -9,6 +9,7 @@ struct Window {
 		if (window == nullptr) {
 			throw std::runtime_error(SDL_GetError());
 		}
+		SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 	}
 	~Window() {
 		SDL_DestroyWindow(window);

@@ -50,9 +50,6 @@
     <ClInclude Include="RenderManager.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Header Files\DataTypes</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL_System.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>

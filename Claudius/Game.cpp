@@ -2,21 +2,66 @@
 
 #include "Game.h"
 #include "RenderManager.h"
-#include <iostream>
+#include "Window.h"
+#include "Renderer.h"
+#include "SDL_System.h"
 
-Game::Game(ResourceManager& resourceManager) : m_resourceManager(resourceManager), width(1250), height(700)
+void RenderManager::Render(const Vector2Int& pos, const Rectangle& rect, const Color& color)
 {
+	rectEntries.push_back({ pos, rect, color });
 }
 
-Game::~Game()
+void RenderManager::Clear()
 {
+	rectEntries.clear();
 }
 
-bool Game::Enter(int& w, int& h, std::string& title)
+void Game::run()
 {
-	w = this->width;	//1250
-	h = this->height;	// 700
-	title = "Snake";
+	SDL_System system{};
+	Window window{ "Snake", 1280, 720 };
+	Renderer renderer{ window };
+	bool running = true;
+
+	RenderManager renderManager;
+
+	while (running)
+	{
+		SDL_Event e;
+		while (SDL_PollEvent(&e))
+		{
+			switch (e.type)
+			{
+			case SDL_QUIT: running = false; break;
+			case SDL_KEYDOWN: OnKeyDown(e.key.keysym.sym); break;
+			default:
+				break;
+			}
+		}
+
+		Update();
+		Render(renderManager);
+
+		renderer.set_draw_color(0, 0, 0, 0);
+		renderer.clear();
+		for (auto& entry : renderManager.rectEntries)
+		{
+			renderer.set_draw_color(entry.color.r, entry.color.g, entry.color.b, entry.color.a);
+			SDL_Rect rect{ entry.position.x,
+						   entry.position.y,
+						   entry.rect.w,
+						   entry.rect.h };
+			renderer.render_fillrect(rect);
+		}
+		renderer.present();
+		renderManager.Clear();
+		SDL_Delay(1000 / 20);
+	}
+
+}
+
+bool Game::Enter()
+{
 	return true;
 }
 
