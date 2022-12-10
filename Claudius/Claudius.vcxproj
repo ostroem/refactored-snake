@@ -152,14 +152,13 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Rectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="SDL_System.h" />

@@ -4,7 +4,6 @@
 
 #undef main
 
-
 int main()
 {
 	Game{}.run();

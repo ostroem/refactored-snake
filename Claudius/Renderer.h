@@ -21,6 +21,9 @@ struct Renderer {
 	void set_draw_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const noexcept {
 		SDL_SetRenderDrawColor(renderer, r, g, b, a);
 	}
+	void render(){
+
+	}
 
 	void clear() const noexcept {
 		SDL_RenderClear(renderer);

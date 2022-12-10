@@ -7,12 +7,11 @@
 #include "SDL_keycode.h"
 #include "RenderManager.h"
 
-class Game
-{
+class Game {
 public:
 	Game() = default;
 	void run();
-private:
+public:
 	bool Enter();
 	void Update();
 	void Render(RenderManager& rendererManager);

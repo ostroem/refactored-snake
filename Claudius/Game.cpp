@@ -6,7 +6,7 @@
 #include "Renderer.h"
 #include "SDL_System.h"
 
-void RenderManager::Render(const Vector2Int& pos, const Rectangle& rect, const Color& color)
+void RenderManager::Render(const Vector2Int& pos, const SDL_Rect& rect, const Color& color)
 {
 	rectEntries.push_back({ pos, rect, color });
 }
@@ -32,9 +32,11 @@ void Game::run()
 		{
 			switch (e.type)
 			{
-			case SDL_QUIT: running = false; break;
-			case SDL_KEYDOWN: OnKeyDown(e.key.keysym.sym); break;
-			default:
+			case SDL_QUIT: running = false;
+				break;
+			case SDL_KEYDOWN: OnKeyDown(e.key.keysym.sym);
+				break;
+			default: 
 				break;
 			}
 		}
@@ -46,12 +48,12 @@ void Game::run()
 		renderer.clear();
 		for (auto& entry : renderManager.rectEntries)
 		{
-			renderer.set_draw_color(entry.color.r, entry.color.g, entry.color.b, entry.color.a);
-			SDL_Rect rect{ entry.position.x,
-						   entry.position.y,
-						   entry.rect.w,
-						   entry.rect.h };
-			renderer.render_fillrect(rect);
+			renderer.set_draw_color(entry.color.r,
+									entry.color.g,
+									entry.color.b,
+									entry.color.a);
+
+			renderer.render_fillrect(entry.rect);
 		}
 		renderer.present();
 		renderManager.Clear();
