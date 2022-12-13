@@ -6,12 +6,12 @@
 #include "Renderer.h"
 #include "SDL_System.h"
 
-void RenderManager::Render(const Vector2Int& pos, const SDL_Rect& rect, const Color& color)
+void RenderManager::pushback_entries(const Vector2Int& pos, const SDL_Rect& rect, const Color& color)
 {
 	rectEntries.push_back({ pos, rect, color });
 }
 
-void RenderManager::Clear()
+void RenderManager::clear()
 {
 	rectEntries.clear();
 }
@@ -56,7 +56,7 @@ void Game::run()
 			renderer.render_fillrect(entry.rect);
 		}
 		renderer.present();
-		renderManager.Clear();
+		renderManager.clear();
 		SDL_Delay(1000 / 20);
 	}
 
