@@ -19,7 +19,7 @@ void RenderManager::Clear()
 void Game::run()
 {
 	SDL_System system{};
-	Window window{ "Snake", 1280, 720 };
+	Window window{ "Snake", 1250, 700 };
 	Renderer renderer{ window };
 	bool running = true;
 

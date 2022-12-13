@@ -14,8 +14,8 @@ struct RenderManager
 		Color color{};
 	};
 
-	void Render(const Vector2Int& pos, const SDL_Rect& rect, const Color& color);
-	void Clear();
+	void pushback_entries(const Vector2Int& pos, const SDL_Rect& rect, const Color& color);
+	void clear();
 
 	std::vector<RectEntry> rectEntries;
 };

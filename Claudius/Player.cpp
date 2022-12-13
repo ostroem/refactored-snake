@@ -12,11 +12,11 @@ Player::Player() noexcept
 }
 void Player::Render(RenderManager& renderManager)
 {
-	renderManager.Render(position, rect, color);
+	renderManager.pushback_entries(position, rect, color);
 
 	for (int i = 0; i < 50; i++)
 	{
-		renderManager.Render(parts[i].position, parts[i].rect, parts[i].color);
+		renderManager.pushback_entries(parts[i].position, parts[i].rect, parts[i].color);
 	}
 }
 

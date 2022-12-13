@@ -5,7 +5,7 @@
 
 void Apple::Render(RenderManager& renderManager)
 {
-	renderManager.Render(position, rect, color);
+	renderManager.pushback_entries(position, rect, color);
 }
 
 
