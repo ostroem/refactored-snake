@@ -7,5 +7,3 @@ void Apple::Render(RenderManager& renderManager)
 {
 	renderManager.pushback_entries(position, rect, color);
 }
-
-

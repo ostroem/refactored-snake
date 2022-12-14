@@ -9,12 +9,12 @@ class Player : public Entity {
 public:
 	Player() noexcept;
 
-	void OnKeyDown(SDL_Keycode key) noexcept;
-	void Render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.
-	void Update();
-	void ResetPlayer();
+	void on_key_down(SDL_Keycode key) noexcept;
+	void render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.
+	void update();
+	void reset();
 	Vector2Int get_position() const noexcept { return position; }
-	void set_position();
+	void set_position(Entity& part) noexcept;
 private:
 	enum class directions {
 		up,
@@ -24,11 +24,10 @@ private:
 	};
 	directions direction;
 public:
-	std::array<Entity, 50> parts;
+	std::vector<Entity> parts;
 private:
-	const int player_size;
-	const int movement_speed;
+	const int movementSpeed;
 
-	std::array<int, 50> x_difference;
-	std::array<int, 50> y_difference;
+	std::array<int, 50> xDifference;
+	std::array<int, 50> yDifference;
 };

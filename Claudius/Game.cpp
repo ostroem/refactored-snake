@@ -69,7 +69,7 @@ bool Game::Enter()
 
 void Game::Update()
 {
-	player.Update();
+	player.update();
 
 	// Player colliding on theirself.
 	for (int i = 0; i < score; i++)
@@ -102,7 +102,7 @@ void Game::Update()
 
 void Game::Render(RenderManager& renderManager)
 {
-	player.Render(renderManager);
+	player.render(renderManager);
 	apple.Render(renderManager);
 }
 
