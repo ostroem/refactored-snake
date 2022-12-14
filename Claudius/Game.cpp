@@ -19,7 +19,7 @@ void RenderManager::clear()
 void Game::run()
 {
 	SDL_System system{};
-	Window window{ "Snake", 1250, 700 };
+	Window window{ "Snake", 1280, 720 };
 	Renderer renderer{ window };
 	bool running = true;
 
@@ -76,37 +76,37 @@ void Game::Update()
 	{
 		if (player.get_position() == player.parts[i].position)
 		{
-			player.ResetPlayer();
+			player.reset();
 		}
 	}
 
 	// Player going out of X bounds.
 	if (player.get_position().x > width || player.get_position().x < 0)
 	{
-		player.ResetPlayer();
+		player.reset();
 	}
 
 	// Player going out of Y bounds.
 	if (player.get_position().y > height || player.get_position().y < 0)
 	{
-		player.ResetPlayer();
+		player.reset();
 	}
 
 	// Player collide on apple.
 	if (player.get_position() == apple.get_position())
 	{
 		score++;
-		apple.set_position((rand() % 125) * 10, (rand() % 70) * 10);
+		apple.randomize_position();
 	}
 }
 
 void Game::Render(RenderManager& renderManager)
 {
 	player.render(renderManager);
-	apple.Render(renderManager);
+	apple.render(renderManager);
 }
 
 void Game::OnKeyDown(SDL_Keycode key)
 {
-	player.OnKeyDown(key);
+	player.on_key_down(key);
 }

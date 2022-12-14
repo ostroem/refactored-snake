@@ -5,9 +5,10 @@
 
 class Apple : public Entity {
 public:
-	void Render(RenderManager& renderManager);
+	Apple() noexcept;
+	void render(RenderManager& renderManager);
 	Vector2Int get_position() const noexcept { return position; }
-	void set_position(int x, int y) noexcept { position.x = x; position.y = y; }
+	void randomize_position() noexcept;
 
 private:
 	bool new_apple = false;
