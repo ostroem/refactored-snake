@@ -18,6 +18,10 @@ public:
 		return parts.at(0).position; 
 	}
 	void set_position(Entity& part) noexcept;
+	void grow();
+private:
+	void initialize_parts(Entity part) noexcept;
+
 private:
 	enum class directions {
 		up,

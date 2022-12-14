@@ -71,14 +71,14 @@ void Game::Update()
 {
 	player.update();
 
-	// Player colliding on theirself.
-	for (int i = 0; i < score; i++)
-	{
-		if (player.get_position() == player.parts[i].position)
-		{
-			player.reset();
-		}
-	}
+	//// Player colliding on theirself.
+	//for (int i = 0; i < score; i++)
+	//{
+	//	if (player.get_position() == player.parts[i].position)
+	//	{
+	//		player.reset();
+	//	}
+	//}
 
 	// Player going out of X bounds.
 	if (player.get_position().x > width || player.get_position().x < 0)
@@ -97,6 +97,7 @@ void Game::Update()
 	{
 		score++;
 		apple.randomize_position();
+		player.grow();
 	}
 }
 

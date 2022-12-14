@@ -93,3 +93,18 @@ void Player::set_position(Entity& part) noexcept
 	part.rect.x = part.position.x;
 	part.rect.y = part.position.y;
 }
+
+void Player::initialize_parts(Entity part) noexcept {
+	part.rect = { 0, 0, 10, 10 };
+	part.color = { 255, 0, 0, 0 };
+	part.position = { get_position().x - 10, get_position().y };
+	part.rect.x = part.position.x;
+	part.rect.y = part.position.y;
+}
+
+void Player::grow()
+{
+	constexpr Entity newPart = {};
+	initialize_parts(newPart);
+	parts.push_back(newPart);
+}
