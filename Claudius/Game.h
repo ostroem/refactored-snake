@@ -12,7 +12,6 @@ public:
 	Game() = default;
 	void run();
 public:
-	bool enter();
 	void update();
 	void render(RenderManager& rendererManager);
 	void on_key_down(SDL_Keycode key);

@@ -21,17 +21,14 @@ void Game::run()
 	SDL_System system{};
 	Window window{ "Snake", 1280, 720 };
 	Renderer renderer{ window };
+	RenderManager renderManager;
 	bool running = true;
 
-	RenderManager renderManager;
 
-	while (running)
-	{
+	while (running) {
 		SDL_Event e;
-		while (SDL_PollEvent(&e))
-		{
-			switch (e.type)
-			{
+		while (SDL_PollEvent(&e)) {
+			switch (e.type) {
 			case SDL_QUIT: running = false;
 				break;
 			case SDL_KEYDOWN: on_key_down(e.key.keysym.sym);
@@ -41,13 +38,12 @@ void Game::run()
 			}
 		}
 
-		Update();
-		Render(renderManager);
+		update();
+		render(renderManager);
 
 		renderer.set_draw_color(0, 0, 0, 0);
 		renderer.clear();
-		for (auto& entry : renderManager.rectEntries)
-		{
+		for (auto& entry : renderManager.rectEntries) {
 			renderer.set_draw_color(entry.color.r,
 									entry.color.g,
 									entry.color.b,
@@ -59,15 +55,10 @@ void Game::run()
 		renderManager.clear();
 		SDL_Delay(50);
 	}
-
 }
 
-bool Game::Enter()
-{
-	return true;
-}
 
-void Game::Update()
+void Game::update()
 {
 	player.update();
 	if (player.is_head_colliding_with_part()) {
@@ -86,7 +77,7 @@ void Game::Update()
 	}
 }
 
-void Game::Render(RenderManager& renderManager)
+void Game::render(RenderManager& renderManager)
 {
 	player.render(renderManager);
 	apple.render(renderManager);
