@@ -12,24 +12,20 @@ public:
 	void on_key_down(SDL_Keycode key) noexcept;
 	void render(RenderManager& renderManager);
 	void update();
-	void reset();
-	Vector2Int get_position() const 
-	{ 
-		return parts.at(0).position;
-	}
+	void reset() noexcept;
+	Vector2Int get_position() const;
+	void grow();
 	bool is_head_colliding_with_part();
 	bool is_head_out_of_bounds();
 
 private:
+	Entity& head();
+	Entity construct_part() const noexcept;
 	void set_position(Entity& part) noexcept;
-	void grow();
 	void push_part() noexcept;
-	Entity& head() {
-		return parts.at(0);
-	}
 	void update_head_direction();
 	void update_parts_position();
-	Entity construct_part() noexcept;
+
 private:
 	enum class directions {
 		up,

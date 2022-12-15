@@ -39,7 +39,7 @@ void Player::on_key_down(SDL_Keycode key) noexcept {
 	}
 }
 
-void Player::reset() {
+void Player::reset() noexcept {
 	parts.clear();
 	push_part();
 }
@@ -66,7 +66,7 @@ void Player::push_part() noexcept
 	parts.push_back(construct_part());
 }
 
-Entity Player::construct_part() noexcept{
+Entity Player::construct_part() const noexcept{
 	constexpr int startX = 100;
 	constexpr int startY = 200;
 
@@ -111,3 +111,12 @@ bool Player::is_head_out_of_bounds()
 		return true;
 	return false;
 }
+
+Vector2Int Player::get_position() const {
+	return parts.at(0).position;
+}
+
+Entity& Player::head() {
+	return parts.at(0);
+}
+
