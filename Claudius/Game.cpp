@@ -57,7 +57,7 @@ void Game::run()
 		}
 		renderer.present();
 		renderManager.clear();
-		SDL_Delay(1000 / 20);
+		SDL_Delay(50);
 	}
 
 }

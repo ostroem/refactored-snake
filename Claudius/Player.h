@@ -7,18 +7,22 @@
 
 class Player {
 public:
-	Player() noexcept;
+	Player();
 
 	void on_key_down(SDL_Keycode key) noexcept;
 	void render(RenderManager& renderManager);
 	void update();
-	void reset() noexcept;
+	void reset();
 	Vector2Int get_position() const 
 	{ 
 		return parts.at(0).position;
 	}
 	void set_position(Entity& part) noexcept;
 	void grow();
+	void update_parts_position();
+	void push_part();
+	Entity construct_part();
+	void update_head_direction();
 	Entity& head() {
 		return parts.at(0);
 	}
@@ -33,5 +37,4 @@ private:
 private:
 	std::vector<Entity> parts;
 	const int movementSpeed = 10;
-	const int rectSize = 10;
 };
