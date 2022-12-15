@@ -1,4 +1,4 @@
-#pragma once		// #pragma once == Compile this file once.
+#pragma once
 
 #include "Entity.h"
 #include "SDL_keycode.h"
@@ -17,17 +17,19 @@ public:
 	{ 
 		return parts.at(0).position;
 	}
+	bool is_head_colliding_with_part();
+	bool is_head_out_of_bounds();
+
+private:
 	void set_position(Entity& part) noexcept;
 	void grow();
-	void update_parts_position();
-	void push_part();
-	Entity construct_part();
-	void update_head_direction();
+	void push_part() noexcept;
 	Entity& head() {
 		return parts.at(0);
 	}
-	bool is_head_colliding_with_part();
-	bool is_head_out_of_bounds();
+	void update_head_direction();
+	void update_parts_position();
+	Entity construct_part() noexcept;
 private:
 	enum class directions {
 		up,
@@ -35,8 +37,8 @@ private:
 		left,
 		right
 	};
-	directions direction;
 private:
+	directions direction;
 	std::vector<Entity> parts;
 	const int movementSpeed = 10;
 };

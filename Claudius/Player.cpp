@@ -61,12 +61,12 @@ void Player::update_parts_position() {
 	}
 }
 
-void Player::push_part()
+void Player::push_part() noexcept
 {
 	parts.push_back(construct_part());
 }
 
-Entity Player::construct_part(){
+Entity Player::construct_part() noexcept{
 	constexpr int startX = 100;
 	constexpr int startY = 200;
 
