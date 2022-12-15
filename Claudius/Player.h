@@ -26,6 +26,8 @@ public:
 	Entity& head() {
 		return parts.at(0);
 	}
+	bool is_head_colliding_with_part();
+	bool is_head_out_of_bounds();
 private:
 	enum class directions {
 		up,

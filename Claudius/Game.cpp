@@ -70,31 +70,16 @@ bool Game::Enter()
 void Game::Update()
 {
 	player.update();
-
-	//// Player colliding on theirself.
-	//for (int i = 0; i < score; i++)
-	//{
-	//	if (player.get_position() == player.parts[i].position)
-	//	{
-	//		player.reset();
-	//	}
-	//}
-
-	// Player going out of X bounds.
-	if (player.get_position().x > width || player.get_position().x < 0)
-	{
+	if (player.is_head_colliding_with_part()) {
 		player.reset();
+		score = 0;
+	}
+	if (player.is_head_out_of_bounds()) {
+		player.reset();
+		score = 0;
 	}
 
-	// Player going out of Y bounds.
-	if (player.get_position().y > height || player.get_position().y < 0)
-	{
-		player.reset();
-	}
-
-	// Player collide on apple.
-	if (player.get_position() == apple.get_position())
-	{
+	if (player.get_position() == apple.get_position()) {
 		score++;
 		apple.randomize_position();
 		player.grow();

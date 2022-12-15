@@ -93,3 +93,21 @@ void Player::update_head_direction() {
 	set_position(head());
 
 }
+
+bool Player::is_head_colliding_with_part()
+{
+	for (int i = 1; i < parts.size() - 1; i++) {
+		if (parts.at(i).position == head().position)
+			return true;
+	}
+	return false;
+}
+
+bool Player::is_head_out_of_bounds()
+{
+	if (head().position.x > 1280 || head().position.x < 0)
+		return true;
+	if (head().position.y > 720 || head().position.y < 0)
+		return true;
+	return false;
+}
