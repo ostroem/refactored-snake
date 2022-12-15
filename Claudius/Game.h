@@ -18,8 +18,6 @@ public:
 
 private:
 	std::string name;
-	int width { 1280 };
-	int height { 720 };
 	int score { };
 
 private:

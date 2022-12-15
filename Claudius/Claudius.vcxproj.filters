@@ -86,5 +86,8 @@
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

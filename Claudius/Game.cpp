@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Renderer.h"
 #include "SDL_System.h"
+#include "Config.h"
 
 void RenderManager::pushback_entries(const Vector2Int& pos, const SDL_Rect& rect, const Color& color)
 {
@@ -19,7 +20,7 @@ void RenderManager::clear()
 void Game::run()
 {
 	SDL_System system{};
-	Window window{ "Snake", 1280, 720 };
+	Window window{ "Snake", Config::window_width, Config::window_height };
 	Renderer renderer{ window };
 	RenderManager renderManager;
 	bool running = true;
