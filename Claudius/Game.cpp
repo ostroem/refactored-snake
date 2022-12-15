@@ -34,7 +34,7 @@ void Game::run()
 			{
 			case SDL_QUIT: running = false;
 				break;
-			case SDL_KEYDOWN: OnKeyDown(e.key.keysym.sym);
+			case SDL_KEYDOWN: on_key_down(e.key.keysym.sym);
 				break;
 			default: 
 				break;
@@ -92,7 +92,7 @@ void Game::Render(RenderManager& renderManager)
 	apple.render(renderManager);
 }
 
-void Game::OnKeyDown(SDL_Keycode key)
+void Game::on_key_down(SDL_Keycode key)
 {
 	player.on_key_down(key);
 }

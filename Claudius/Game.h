@@ -12,16 +12,16 @@ public:
 	Game() = default;
 	void run();
 public:
-	bool Enter();
-	void Update();
-	void Render(RenderManager& rendererManager);
-	void OnKeyDown(SDL_Keycode key);
+	bool enter();
+	void update();
+	void render(RenderManager& rendererManager);
+	void on_key_down(SDL_Keycode key);
 
-public:
+private:
 	std::string name;
-	int width = 1280;
-	int height = 720;
-	int score = 0;
+	int width { 1280 };
+	int height { 720 };
+	int score { };
 
 private:
 	Player player;
