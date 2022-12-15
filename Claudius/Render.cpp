@@ -9,6 +9,7 @@ Renderer::Renderer(const Window& window) {
 }
 
 void Renderer::set_draw_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const noexcept {
+	SDL_SetRenderDrawBlendMode(renderer.get(), SDL_BlendMode::SDL_BLENDMODE_BLEND);
 	SDL_SetRenderDrawColor(renderer.get(), r, g, b, a);
 }
 void Renderer::render() noexcept {

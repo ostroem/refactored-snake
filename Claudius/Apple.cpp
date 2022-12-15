@@ -6,7 +6,7 @@
 Apple::Apple() noexcept {
 	randomize_position();
 
-	color = Color(255, 0, 0, 0);
+	color = Color(255, 0, 0, 255);
 	rect = { position.x, position.y, 10, 10 };
 }
 

@@ -19,9 +19,9 @@ public:
 
 public:
 	std::string name;
-	int width { 0 };
-	int height { 0 };
-	int score { 0 };
+	int width = 1280;
+	int height = 720;
+	int score = 0;
 
 private:
 	Player player;
