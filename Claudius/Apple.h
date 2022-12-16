@@ -9,7 +9,4 @@ public:
 	void render(RenderManager& renderManager);
 	Vector2Int get_position() const noexcept { return position; }
 	void randomize_position() noexcept;
-
-private:
-	bool new_apple = false;
 };

@@ -70,9 +70,10 @@ void Player::push_part() noexcept
 Entity Player::construct_part() const noexcept{
 	constexpr int startX = 100;
 	constexpr int startY = 200;
+	constexpr int rectSize = 10;
 
 	const Color color = Color(0, 255, 0, 255);
-	const SDL_Rect rect{ startX, startY, 10, 10 };
+	const SDL_Rect rect{ startX, startY, rectSize, rectSize };
 
 	return Entity{ Vector2Int(startX, startY),
 					color,

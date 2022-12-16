@@ -2,12 +2,13 @@
 
 #include "Apple.h"
 #include "RenderManager.h"
+#include "Config.h"
 
 Apple::Apple() noexcept {
 	randomize_position();
-
+	constexpr int rectSize = 10;
 	color = Color(255, 0, 0, 255);
-	rect = { position.x, position.y, 10, 10 };
+	rect = { position.x, position.y, rectSize, rectSize };
 }
 
 void Apple::render(RenderManager& renderManager) {
@@ -15,8 +16,9 @@ void Apple::render(RenderManager& renderManager) {
 }
 
 void Apple::randomize_position() noexcept{
-	position.x = rand() % 128 * 10;
-	position.y = rand() % 72 * 10;
+	constexpr int denom = 10;
+	position.x = rand() % (Config::window_width / denom) * denom;
+	position.y = rand() % (Config::window_height / denom) * denom;
 	rect.x = position.x;
 	rect.y = position.y;
 
