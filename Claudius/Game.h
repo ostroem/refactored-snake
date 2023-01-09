@@ -1,6 +1,4 @@
 #pragma once
-#include <string>
-#include <vector>
 #include "SDL_keycode.h"
 
 #include "Apple.h"
@@ -12,12 +10,8 @@ public:
 	void run();
 public:
 	void update();
-	void render(Renderer& renderer);
-	void on_key_down(SDL_Keycode key);
-
-private:
-	std::string name;
-	int score { };
+	void render(Renderer& renderer) const noexcept;
+	void on_key_down(SDL_Keycode key) noexcept;
 
 private:
 	Player player;

@@ -19,19 +19,19 @@ public:
 	bool is_head_out_of_bounds();
 
 private:
-	Position& head();
-	void push_part();
-	void update_head_position();
-	void update_parts_position();
+	Position& head() noexcept;
+	void update_head_position() noexcept;
+	void update_parts_position() noexcept;
 
 private:
-	enum class directions {
-		up,
-		down,
-		left,
-		right
+	enum class Directions {
+		NONE,
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT
 	};
 private:
-	directions direction = directions::up;
+	Directions direction = Directions::UP;
 	std::vector<Position> parts;
 };
