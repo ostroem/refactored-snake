@@ -13,61 +13,15 @@ void Player::render(Renderer& renderer) const noexcept {
 	}
 }
 
-void Player::update() {
+void Player::update() noexcept {
 	if (parts.size() > 1) {
 		update_parts_position();
 	}
 	update_head_position();
 }
 
-void Player::on_key_down(SDL_Keycode key) noexcept {
-	switch (key) {
-	case SDLK_LEFT:
-		if (direction != Directions::RIGHT)
-			direction = Directions::LEFT;
-		break;
-	case SDLK_RIGHT:
-		if(direction != Directions::LEFT)
-			direction = Directions::RIGHT; 
-		break;
-	case SDLK_UP:
-		if(direction != Directions::DOWN)
-			direction = Directions::UP; 
-		break;
-	case SDLK_DOWN:
-		if(direction != Directions::UP)
-			direction = Directions::DOWN;
-		break;
-	default: break;
-	}
-}
-
-void Player::reset() noexcept {
-	head() = { 300, 300 };
-	parts.resize(1);
-	direction = Directions::NONE;
-}
-
-void Player::grow() {
+void Player::grow() noexcept {
 	parts.push_back(head());
-}
-
-void Player::update_parts_position() noexcept {
-	std::shift_right(parts.begin(), parts.end(), 1);
-}
-
-void Player::update_head_position() noexcept {
-	constexpr int movement_speed = 10;
-
-	switch (direction) {
-		case Directions::NONE: break;
-		case Directions::UP: head().y -= movement_speed; break;
-		case Directions::DOWN: head().y += movement_speed; break;
-		case Directions::LEFT: head().x -= movement_speed; break;
-		case Directions::RIGHT: head().x += movement_speed; break;
-		default: break;
-	}
-
 }
 
 bool Player::is_head_colliding_with_part()
@@ -89,8 +43,54 @@ bool Player::is_head_out_of_bounds()
 	return false;
 }
 
+void Player::reset() noexcept {
+	head() = { 300, 300 };
+	parts.resize(1);
+	direction = Directions::NONE;
+}
+
+void Player::on_key_down(SDL_Keycode key) noexcept {
+	switch (key) {
+	case SDLK_LEFT:
+		if (direction != Directions::RIGHT)
+			direction = Directions::LEFT;
+		break;
+	case SDLK_RIGHT:
+		if (direction != Directions::LEFT)
+			direction = Directions::RIGHT;
+		break;
+	case SDLK_UP:
+		if (direction != Directions::DOWN)
+			direction = Directions::UP;
+		break;
+	case SDLK_DOWN:
+		if (direction != Directions::UP)
+			direction = Directions::DOWN;
+		break;
+	default: break;
+	}
+}
+
 Position Player::get_position() const {
 	return parts.at(0);
+}
+
+void Player::update_head_position() noexcept {
+	constexpr int movement_speed = 10;
+
+	switch (direction) {
+	case Directions::NONE: break;
+	case Directions::UP: head().y -= movement_speed; break;
+	case Directions::DOWN: head().y += movement_speed; break;
+	case Directions::LEFT: head().x -= movement_speed; break;
+	case Directions::RIGHT: head().x += movement_speed; break;
+	default: break;
+	}
+
+}
+
+void Player::update_parts_position() noexcept {
+	std::shift_right(parts.begin(), parts.end(), 1);
 }
 
 Position& Player::head() noexcept {
