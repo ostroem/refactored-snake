@@ -107,9 +107,9 @@ bool Player::is_head_colliding_with_part()
 
 bool Player::is_head_out_of_bounds()
 {
-	if (head().position.x > Config::window_width || head().position.x < 0)
+	if (head().position.x > Config::WINDOW_WIDTH || head().position.x < 0)
 		return true;
-	if (head().position.y > Config::window_height || head().position.y < 0)
+	if (head().position.y > Config::WINDOW_HEIGHT || head().position.y < 0)
 		return true;
 	return false;
 }

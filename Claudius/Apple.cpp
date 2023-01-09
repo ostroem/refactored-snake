@@ -17,8 +17,8 @@ void Apple::render(RenderManager& renderManager) {
 
 void Apple::randomize_position() noexcept{
 	constexpr int denom = 10;
-	position.x = rand() % (Config::window_width / denom) * denom;
-	position.y = rand() % (Config::window_height / denom) * denom;
+	position.x = rand() % (Config::WINDOW_WIDTH / denom) * denom;
+	position.y = rand() % (Config::WINDOW_HEIGHT / denom) * denom;
 	rect.x = position.x;
 	rect.y = position.y;
 

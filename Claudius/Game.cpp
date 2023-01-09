@@ -20,7 +20,7 @@ void RenderManager::clear()
 void Game::run()
 {
 	SDL_System system{};
-	Window window{ "Snake", Config::window_width, Config::window_height };
+	Window window{};
 	Renderer renderer{ window };
 	RenderManager renderManager;
 	bool running = true;
