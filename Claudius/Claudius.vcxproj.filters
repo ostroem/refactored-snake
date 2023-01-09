@@ -89,5 +89,8 @@
     <ClInclude Include="Config.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
