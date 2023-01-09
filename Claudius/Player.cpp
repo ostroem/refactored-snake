@@ -4,16 +4,19 @@
 #include "Config.h"
 
 Player::Player() noexcept {
-	parts.push_back({ 100, 300 });
+	Position pos = { 300, 300 };
+	parts.push_back(pos);
 }
-void Player::render(Renderer& renderer) {
-	for(auto& p : parts) {
-		renderer.render(p, SNAKE_COLOR);
+void Player::render(Renderer& renderer) const noexcept {
+	for(const auto& part : parts) {
+		renderer.render(part, SNAKE_COLOR);
 	}
 }
 
 void Player::update() {
-	update_parts_position();
+	if (parts.size() > 1) {
+		update_parts_position();
+	}
 	update_head_position();
 }
 
@@ -61,7 +64,7 @@ void Player::update_head_position() {
 
 	switch (direction) {
 	case directions::up:
-		head().y -= movement_speed;
+		head().y -= movement_speed; break;
 	case directions::down:
 		head().y += movement_speed; break;
 	case directions::left:

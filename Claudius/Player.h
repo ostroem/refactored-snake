@@ -10,7 +10,7 @@ public:
 	Player() noexcept;
 
 	void on_key_down(SDL_Keycode key) noexcept;
-	void render(Renderer& renderer);
+	void render(Renderer& renderer) const noexcept;
 	void update();
 	void reset() noexcept;
 	Position get_position() const;

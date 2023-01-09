@@ -13,7 +13,6 @@ void Game::run()
 	Renderer renderer{ window };
 	bool running = true;
 
-
 	while (running) {
 		SDL_Event e;
 		while (SDL_PollEvent(&e)) {
@@ -59,6 +58,7 @@ void Game::render(Renderer& renderer)
 {
 	player.render(renderer);
 	apple.render(renderer);
+	renderer.present();
 }
 
 void Game::on_key_down(SDL_Keycode key)
