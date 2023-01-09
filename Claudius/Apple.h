@@ -1,12 +1,14 @@
 #pragma once
 
-#include "Entity.h"
-#include "RenderManager.h"
+#include "Renderer.h"
+#include "Utils.h"
 
-class Apple : public Entity {
+class Apple {
 public:
 	Apple() noexcept;
-	void render(RenderManager& renderManager);
-	Vector2Int get_position() const noexcept { return position; }
+	void render(Renderer& renderer) const noexcept;
+	Position get_position() const noexcept;
 	void randomize_position() noexcept;
+private:
+	Position position;
 };

@@ -1,5 +1,4 @@
 ﻿#include "SDL.h"
-#include "RenderManager.h"
 #include "Game.h"
 
 #undef main

@@ -12,8 +12,16 @@ void Renderer::set_draw_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const noexcept
 	SDL_SetRenderDrawBlendMode(renderer.get(), SDL_BlendMode::SDL_BLENDMODE_BLEND);
 	SDL_SetRenderDrawColor(renderer.get(), r, g, b, a);
 }
-void Renderer::render() noexcept {
+void Renderer::render(Position position, Color color) noexcept {
+	const SDL_Rect rect{ position.x, position.y, tile_size, tile_size };
 
+	set_draw_color(0, 0, 0, 0);
+	clear();
+
+	set_draw_color(color.r, color.g, color.b, color.a);
+
+	render_fillrect(rect);
+	present();
 }
 
 void Renderer::clear() const noexcept {

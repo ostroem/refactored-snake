@@ -5,7 +5,6 @@
 #include "Apple.h"
 #include "Player.h"
 #include "SDL_keycode.h"
-#include "RenderManager.h"
 
 class Game {
 public:
@@ -13,7 +12,7 @@ public:
 	void run();
 public:
 	void update();
-	void render(RenderManager& rendererManager);
+	void render(Renderer& renderer);
 	void on_key_down(SDL_Keycode key);
 
 private:

@@ -1,26 +1,22 @@
-#pragma once
-
 #include "Apple.h"
-#include "RenderManager.h"
 #include "Config.h"
 
 Apple::Apple() noexcept {
 	randomize_position();
-	constexpr int rectSize = 10;
-	color = Color(255, 0, 0, 255);
-	rect = { position.x, position.y, rectSize, rectSize };
 }
 
-void Apple::render(RenderManager& renderManager) {
-	renderManager.pushback_entries(position, rect, color);
+void Apple::render(Renderer& renderer) const noexcept {
+	renderer.render(position, apple_color);
+}
+
+Position Apple::get_position() const noexcept {
+	return position;
 }
 
 void Apple::randomize_position() noexcept{
 	constexpr int denom = 10;
 	position.x = rand() % (Config::WINDOW_WIDTH / denom) * denom;
 	position.y = rand() % (Config::WINDOW_HEIGHT / denom) * denom;
-	rect.x = position.x;
-	rect.y = position.y;
 
 }
 

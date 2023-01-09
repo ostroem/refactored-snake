@@ -1,21 +1,20 @@
 #include "Player.h"
-#include "RenderManager.h"
+#include "Renderer.h"
 #include <algorithm>
 #include "Config.h"
 
-Player::Player()
-	: direction(directions::up) {
-	push_part();
+Player::Player() noexcept {
+	parts.push_back({ 100, 300 });
 }
-void Player::render(RenderManager& renderManager) {
+void Player::render(Renderer& renderer) {
 	for(auto& p : parts) {
-		renderManager.pushback_entries(p.position, p.rect, p.color);
+		renderer.render(p, snake_color);
 	}
 }
 
 void Player::update() {
 	update_parts_position();
-	update_head_direction();
+	update_head_position();
 }
 
 void Player::on_key_down(SDL_Keycode key) noexcept {
@@ -45,61 +44,40 @@ void Player::reset() noexcept {
 	push_part();
 }
 
-void Player::set_position(Entity& part) noexcept {
-	part.rect.x = part.position.x;
-	part.rect.y = part.position.y;
-}
-
 void Player::grow() {
 	parts.push_back(head());
 }
 
 void Player::update_parts_position() {
-	for (size_t i = parts.size() - 1; i > 0; --i)
-	{
-		parts.at(i).position = parts.at(i - 1).position;
-		set_position(parts.at(i));
-	}
+	std::shift_right(parts.begin(), parts.end(), 1);
 }
 
-void Player::push_part() noexcept
-{
-	parts.push_back(construct_part());
+void Player::push_part() {
+	parts.push_back(get_position());
 }
 
-Entity Player::construct_part() const noexcept{
-	constexpr int startX = 100;
-	constexpr int startY = 200;
-	constexpr int rectSize = 10;
+void Player::update_head_position() {
+	constexpr int movement_speed = 10;
 
-	const Color color = Color(0, 255, 0, 255);
-	const SDL_Rect rect{ startX, startY, rectSize, rectSize };
-
-	return Entity{ Vector2Int(startX, startY),
-					color,
-					rect };
-}
-
-void Player::update_head_direction() {
 	switch (direction) {
 	case directions::up:
-		head().position += Vector2Int(0, -movementSpeed); break;
+		head().y -= movement_speed;
 	case directions::down:
-		head().position += Vector2Int(0, movementSpeed); break;
+		head().y += movement_speed; break;
 	case directions::left:
-		head().position += Vector2Int(-movementSpeed, 0); break;
+		head().x -= movement_speed; break;
 	case directions::right:
-		head().position += Vector2Int(movementSpeed, 0); break;
+		head().x += movement_speed; break;
 	default: break;
 	}
-	set_position(head());
 
 }
 
 bool Player::is_head_colliding_with_part()
 {
 	for (int i = 1; i < parts.size() - 1; i++) {
-		if (parts.at(i).position == head().position)
+		if (parts.at(i).x == head().x &&
+			parts.at(i).y == head().y)
 			return true;
 	}
 	return false;
@@ -107,18 +85,18 @@ bool Player::is_head_colliding_with_part()
 
 bool Player::is_head_out_of_bounds()
 {
-	if (head().position.x > Config::WINDOW_WIDTH || head().position.x < 0)
+	if (head().x > Config::WINDOW_WIDTH || head().x < 0)
 		return true;
-	if (head().position.y > Config::WINDOW_HEIGHT || head().position.y < 0)
+	if (head().y > Config::WINDOW_HEIGHT || head().y < 0)
 		return true;
 	return false;
 }
 
-Vector2Int Player::get_position() const {
-	return parts.at(0).position;
+Position Player::get_position() const {
+	return parts.at(0);
 }
 
-Entity& Player::head() {
+Position& Player::head() {
 	return parts.at(0);
 }
 

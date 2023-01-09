@@ -1,28 +1,16 @@
 // 2019-12-05 Teemu Laiho
 
 #include "Game.h"
-#include "RenderManager.h"
 #include "Window.h"
 #include "Renderer.h"
 #include "SDL_System.h"
 #include "Config.h"
-
-void RenderManager::pushback_entries(const Vector2Int& pos, const SDL_Rect& rect, const Color& color)
-{
-	rectEntries.push_back({ pos, rect, color });
-}
-
-void RenderManager::clear()
-{
-	rectEntries.clear();
-}
 
 void Game::run()
 {
 	SDL_System system{};
 	Window window{};
 	Renderer renderer{ window };
-	RenderManager renderManager;
 	bool running = true;
 
 
@@ -40,20 +28,8 @@ void Game::run()
 		}
 
 		update();
-		render(renderManager);
+		render(renderer);
 
-		renderer.set_draw_color(0, 0, 0, 0);
-		renderer.clear();
-		for (auto& entry : renderManager.rectEntries) {
-			renderer.set_draw_color(entry.color.r,
-									entry.color.g,
-									entry.color.b,
-									entry.color.a);
-
-			renderer.render_fillrect(entry.rect);
-		}
-		renderer.present();
-		renderManager.clear();
 		SDL_Delay(50);
 	}
 }
@@ -71,17 +47,18 @@ void Game::update()
 		score = 0;
 	}
 
-	if (player.get_position() == apple.get_position()) {
+	if (player.get_position().x == apple.get_position().x &&
+		player.get_position().y == apple.get_position().y) {
 		score++;
 		apple.randomize_position();
 		player.grow();
 	}
 }
 
-void Game::render(RenderManager& renderManager)
+void Game::render(Renderer& renderer)
 {
-	player.render(renderManager);
-	apple.render(renderManager);
+	player.render(renderer);
+	apple.render(renderer);
 }
 
 void Game::on_key_down(SDL_Keycode key)

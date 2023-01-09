@@ -56,9 +56,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RenderManager.h">
-      <Filter>Header Files\Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Header Files\DataTypes</Filter>
     </ClInclude>
@@ -82,9 +79,6 @@
     </ClInclude>
     <ClInclude Include="SDL_System.h">
       <Filter>Header Files\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Config.h">
       <Filter>Header Files\Game</Filter>

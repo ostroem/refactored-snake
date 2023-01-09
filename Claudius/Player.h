@@ -1,29 +1,27 @@
 #pragma once
 
-#include "Entity.h"
 #include "SDL_keycode.h"
-#include <array>
-#include "RenderManager.h"
+#include <vector>
+#include "Renderer.h"
+#include "Utils.h"
 
 class Player {
 public:
-	Player();
+	Player() noexcept;
 
 	void on_key_down(SDL_Keycode key) noexcept;
-	void render(RenderManager& renderManager);
+	void render(Renderer& renderer);
 	void update();
 	void reset() noexcept;
-	Vector2Int get_position() const;
+	Position get_position() const;
 	void grow();
 	bool is_head_colliding_with_part();
 	bool is_head_out_of_bounds();
 
 private:
-	Entity& head();
-	Entity construct_part() const noexcept;
-	void set_position(Entity& part) noexcept;
-	void push_part() noexcept;
-	void update_head_direction();
+	Position& head();
+	void push_part();
+	void update_head_position();
 	void update_parts_position();
 
 private:
@@ -34,7 +32,6 @@ private:
 		right
 	};
 private:
-	directions direction;
-	std::vector<Entity> parts;
-	const int movementSpeed = 10;
+	directions direction = directions::up;
+	std::vector<Position> parts;
 };

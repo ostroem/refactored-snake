@@ -158,13 +158,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
-    <ClInclude Include="Entity.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Renderer.h" />
-    <ClInclude Include="RenderManager.h" />
     <ClInclude Include="SDL_System.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Vector2Int.h" />
