@@ -13,7 +13,7 @@ void Renderer::set_draw_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const noexcept
 	SDL_SetRenderDrawColor(renderer.get(), r, g, b, a);
 }
 void Renderer::render(Position position, Color color) noexcept {
-	const SDL_Rect rect{ position.x, position.y, tile_size, tile_size };
+	const SDL_Rect rect{ position.x, position.y, TILE_SIZE, TILE_SIZE };
 
 	set_draw_color(0, 0, 0, 0);
 	clear();

@@ -8,7 +8,7 @@ Player::Player() noexcept {
 }
 void Player::render(Renderer& renderer) {
 	for(auto& p : parts) {
-		renderer.render(p, snake_color);
+		renderer.render(p, SNAKE_COLOR);
 	}
 }
 

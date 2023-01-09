@@ -1,7 +1,8 @@
 #pragma once
+#include <stdexcept>
+
 #include "Window.h"
 #include "Utils.h"
-#include <stdexcept>
 
 class Renderer {
 public:

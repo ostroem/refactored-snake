@@ -1,7 +1,7 @@
 #pragma once
-
-#include "SDL_keycode.h"
 #include <vector>
+#include "SDL_keycode.h"
+
 #include "Renderer.h"
 #include "Utils.h"
 

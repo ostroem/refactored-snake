@@ -1,10 +1,10 @@
 #pragma once
-
 #include <string>
 #include <vector>
+#include "SDL_keycode.h"
+
 #include "Apple.h"
 #include "Player.h"
-#include "SDL_keycode.h"
 
 class Game {
 public:

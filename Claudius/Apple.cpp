@@ -6,7 +6,7 @@ Apple::Apple() noexcept {
 }
 
 void Apple::render(Renderer& renderer) const noexcept {
-	renderer.render(position, apple_color);
+	renderer.render(position, APPLE_COLOR);
 }
 
 Position Apple::get_position() const noexcept {

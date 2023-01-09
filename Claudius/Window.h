@@ -1,8 +1,8 @@
 #pragma once
-#include "SDL_render.h"
-#include "SDL_Delete.h"
 #include <memory>
-#include <string>
+#include "SDL_render.h"
+
+#include "SDL_Delete.h"
 #include "Config.h"
 
 class Window {
