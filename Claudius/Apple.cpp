@@ -5,12 +5,22 @@ Apple::Apple() noexcept {
 	randomize_position();
 }
 
-void Apple::render(Renderer& renderer) const noexcept {
+void Apple::render(const Renderer& renderer) const noexcept {
 	renderer.render(position, APPLE_COLOR);
 }
 
 Position Apple::get_position() const noexcept {
 	return position;
+}
+
+int Apple::get_x() const noexcept
+{
+	return position.x;
+}
+
+int Apple::get_y() const noexcept
+{
+	return position.y;
 }
 
 void Apple::randomize_position() noexcept{

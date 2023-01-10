@@ -3,6 +3,15 @@
 #include "Renderer.h"
 #include "SDL_System.h"
 #include "Config.h"
+#include "Utils.h"
+#include <algorithm>
+
+bool is_colliding(Position pos1, Position pos2) noexcept {
+	if (pos1.x == pos2.x && pos1.y == pos2.y) {
+		return true;
+	}
+	return false;
+}
 
 void Game::run() {
 	SDL_System system{};
@@ -19,8 +28,7 @@ void Game::run() {
 	}
 }
 
-void Game::poll_events(bool& running)
-{
+void Game::poll_events(bool& running) {
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		switch (e.type) {
@@ -34,18 +42,31 @@ void Game::poll_events(bool& running)
 
 void Game::update() {
 	player.update();
-	if (player.is_head_colliding_with_part()) {
+	if (is_head_colliding_with_part()) {
 		player.reset();
 	}
-	if (player.is_head_out_of_bounds()) {
+	if (is_player_out_of_bounds()) {
 		player.reset();
 	}
 
-	if (player.get_position().x == apple.get_position().x &&
-		player.get_position().y == apple.get_position().y) {
+	if (is_colliding(player.get_position(), apple.get_position())) {
 		apple.randomize_position();
 		player.grow();
 	}
+}
+
+bool Game::is_head_colliding_with_part() {
+	//for(const auto& part : player.get_parts())
+	return false;
+}
+
+bool Game::is_player_out_of_bounds() {
+	if (player.get_head_x() > Config::WINDOW_WIDTH || player.get_head_x() < 0)
+		return true;
+	if (player.get_head_y() > Config::WINDOW_HEIGHT || player.get_head_y() < 0)
+		return true;
+
+	return false;
 }
 
 void Game::render(Renderer& renderer) const noexcept {

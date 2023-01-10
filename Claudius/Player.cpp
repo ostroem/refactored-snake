@@ -1,13 +1,14 @@
+#include <algorithm>
+
 #include "Player.h"
 #include "Renderer.h"
-#include <algorithm>
 #include "Config.h"
 
 Player::Player() noexcept {
-	Position pos = { 300, 300 };
+	constexpr Position pos = { 300, 300 };
 	parts.push_back(pos);
 }
-void Player::render(Renderer& renderer) const noexcept {
+void Player::render(const Renderer& renderer) const noexcept {
 	for(const auto& part : parts) {
 		renderer.render(part, SNAKE_COLOR);
 	}
@@ -21,34 +22,15 @@ void Player::update() noexcept {
 }
 
 void Player::grow() noexcept {
-	parts.push_back(head());
-}
-
-bool Player::is_head_colliding_with_part()
-{
-	for (int i = 1; i < parts.size() - 1; i++) {
-		if (parts.at(i).x == head().x &&
-			parts.at(i).y == head().y)
-			return true;
-	}
-	return false;
-}
-
-bool Player::is_head_out_of_bounds()
-{
-	if (head().x > Config::WINDOW_WIDTH || head().x < 0)
-		return true;
-	if (head().y > Config::WINDOW_HEIGHT || head().y < 0)
-		return true;
-	return false;
+	parts.push_back(get_head());
 }
 
 void Player::reset() noexcept {
-	head() = { 300, 300 };
+	parts[0] = { 300, 300 };
 	parts.resize(1);
 	direction = Directions::NONE;
 }
-
+// reiterate
 void Player::on_key_down(SDL_Keycode key) noexcept {
 	switch (key) {
 	case SDLK_LEFT:
@@ -71,21 +53,22 @@ void Player::on_key_down(SDL_Keycode key) noexcept {
 	}
 }
 
-Position Player::get_position() const {
-	return parts.at(0);
+Position Player::get_position() const noexcept {
+	return parts[0];
 }
 
 void Player::update_head_position() noexcept {
 	constexpr int movement_speed = 10;
-
+	Position head = get_head();
 	switch (direction) {
 	case Directions::NONE: break;
-	case Directions::UP: head().y -= movement_speed; break;
-	case Directions::DOWN: head().y += movement_speed; break;
-	case Directions::LEFT: head().x -= movement_speed; break;
-	case Directions::RIGHT: head().x += movement_speed; break;
+	case Directions::UP: head.y -= movement_speed; break;
+	case Directions::DOWN: head.y += movement_speed; break;
+	case Directions::LEFT: head.x -= movement_speed; break;
+	case Directions::RIGHT: head.x += movement_speed; break;
 	default: break;
 	}
+	set_head_position(head);
 
 }
 
@@ -93,7 +76,13 @@ void Player::update_parts_position() noexcept {
 	std::shift_right(parts.begin(), parts.end(), 1);
 }
 
-Position& Player::head() noexcept {
+Position Player::get_head() const noexcept {
 	return parts[0];
+}
+
+void Player::set_head_position(Position pos) noexcept
+{
+	parts[0].x = pos.x;
+	parts[0].y = pos.y;
 }
 
