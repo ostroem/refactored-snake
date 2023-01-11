@@ -38,6 +38,8 @@ Position Player::get_head() const noexcept {
 	return parts[0];
 }
 
+
+
 void Player::set_head_position(Position pos) noexcept
 {
 	parts[0].x = pos.x;
@@ -78,9 +80,28 @@ void Player::reset() noexcept {
 	direction = Directions::NONE;
 }
 
-
 Position Player::get_position() const noexcept {
 	return parts[0];
+}
+
+std::vector<Position>::iterator Player::get_parts_begin() noexcept
+{
+	return parts.begin();
+}
+
+std::vector<Position>::iterator Player::get_parts_end() noexcept
+{
+	return parts.end();
+}
+
+int Player::get_head_x() const noexcept
+{
+	return get_head().x;
+}
+
+int Player::get_head_y() const noexcept
+{
+	return get_head().y;
 }
 
 
