@@ -27,7 +27,7 @@ void Game::run() {
 	while (running) {
 		poll_events(running);
 		update();
-		render(renderer);
+		render();
 
 		SDL_Delay(50);
 	}
