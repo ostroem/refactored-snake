@@ -8,11 +8,6 @@ Player::Player() noexcept {
 	constexpr Position pos = { 300, 300 };
 	parts.push_back(pos);
 }
-void Player::render(const Renderer& renderer) const noexcept {
-	for(const auto& part : parts) {
-		renderer.render(part, SNAKE_COLOR);
-	}
-}
 
 void Player::update() noexcept {
 	if (parts.size() > 1) {
@@ -21,40 +16,8 @@ void Player::update() noexcept {
 	update_head_position();
 }
 
-void Player::grow() noexcept {
-	parts.push_back(parts.back());
-}
-
-void Player::reset() noexcept {
-	parts[0] = { 300, 300 };
-	parts.resize(1);
-	direction = Directions::NONE;
-}
-// reiterate
-void Player::on_key_down(SDL_Keycode key) noexcept {
-	switch (key) {
-	case SDLK_LEFT:
-		if (direction != Directions::RIGHT)
-			direction = Directions::LEFT;
-		break;
-	case SDLK_RIGHT:
-		if (direction != Directions::LEFT)
-			direction = Directions::RIGHT;
-		break;
-	case SDLK_UP:
-		if (direction != Directions::DOWN)
-			direction = Directions::UP;
-		break;
-	case SDLK_DOWN:
-		if (direction != Directions::UP)
-			direction = Directions::DOWN;
-		break;
-	default: break;
-	}
-}
-
-Position Player::get_position() const noexcept {
-	return parts[0];
+void Player::update_parts_position() noexcept {
+	std::shift_right(parts.begin(), parts.end(), 1);
 }
 
 void Player::update_head_position() noexcept {
@@ -69,11 +32,6 @@ void Player::update_head_position() noexcept {
 	default: break;
 	}
 	set_head_position(head);
-
-}
-
-void Player::update_parts_position() noexcept {
-	std::shift_right(parts.begin(), parts.end(), 1);
 }
 
 Position Player::get_head() const noexcept {
@@ -85,4 +43,45 @@ void Player::set_head_position(Position pos) noexcept
 	parts[0].x = pos.x;
 	parts[0].y = pos.y;
 }
+
+void Player::on_key_down(SDL_Keycode key) noexcept {
+	switch (key) {
+	case SDLK_LEFT:
+		direction = (direction != Directions::RIGHT) ? Directions::LEFT : Directions::RIGHT;
+		break;
+	case SDLK_RIGHT:
+		direction = (direction != Directions::LEFT) ? Directions::RIGHT : Directions::LEFT;
+		break;
+	case SDLK_UP:
+		direction = (direction != Directions::DOWN) ? Directions::UP : Directions::DOWN;
+		break;
+	case SDLK_DOWN:
+		direction = (direction != Directions::UP) ? Directions::DOWN : Directions::UP;
+		break;
+	default: break;
+	}
+}
+
+void Player::grow() noexcept {
+	parts.push_back(parts.back());
+}
+
+void Player::render(const Renderer& renderer) const noexcept {
+	for(const auto& part : parts) {
+		renderer.render(part, SNAKE_COLOR);
+	}
+}
+
+
+void Player::reset() noexcept {
+	parts[0] = { 300, 300 };
+	parts.resize(1);
+	direction = Directions::NONE;
+}
+
+
+Position Player::get_position() const noexcept {
+	return parts[0];
+}
+
 

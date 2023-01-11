@@ -8,11 +8,10 @@
 class Player {
 public:
 	Player() noexcept;
-
-	void render(const Renderer& renderer) const noexcept;
 	void update() noexcept;
 
 	void grow() noexcept;
+	void render(const Renderer& renderer) const noexcept;
 
 	void reset() noexcept;
 	void on_key_down(SDL_Keycode key) noexcept;
@@ -34,8 +33,9 @@ public:
 	}
 
 private:
-	void update_head_position() noexcept;
 	void update_parts_position() noexcept;
+	void update_head_position() noexcept;
+
 	void set_head_position(Position pos) noexcept;
 
 	enum class Directions {
