@@ -169,7 +169,6 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SDL_System.h" />
     <ClInclude Include="Utils.h" />
-    <ClInclude Include="Vector2Int.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

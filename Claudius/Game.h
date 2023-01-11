@@ -12,7 +12,7 @@ public:
 	void poll_events(bool& running) noexcept;
 public:
 	void update() noexcept;
-	void render(const Renderer& renderer) const noexcept;
+	void render() const noexcept;
 	void on_key_down(SDL_Keycode key) noexcept;
 	bool is_player_self_colliding() noexcept;
 private:

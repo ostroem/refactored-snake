@@ -65,7 +65,7 @@ bool Game::is_player_self_colliding() noexcept {
 	return (collidingObject != player.get_parts_end() ? true : false);
 }
 
-void Game::render(const Renderer& renderer) const noexcept {
+void Game::render() const noexcept {
 	player.render(renderer);
 	apple.render(renderer);
 
