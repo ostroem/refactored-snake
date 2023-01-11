@@ -8,7 +8,7 @@
 
 class Game {
 public:
-	void run();
+	void run() noexcept;
 	void poll_events(bool& running) noexcept;
 public:
 	void update() noexcept;

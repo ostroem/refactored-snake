@@ -21,7 +21,7 @@ bool is_out_of_bounds(Position position, Position bounds) noexcept {
 	return false;
 }
 
-void Game::run() {
+void Game::run() noexcept {
 	bool running = true;
 
 	while (running) {
