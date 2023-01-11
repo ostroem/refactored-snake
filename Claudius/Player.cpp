@@ -22,28 +22,18 @@ void Player::update_parts_position() noexcept {
 
 void Player::update_head_position() noexcept {
 	constexpr int movement_speed = 10;
-	Position head = get_head();
 	switch (direction) {
 	case Directions::NONE: break;
-	case Directions::UP: head.y -= movement_speed; break;
-	case Directions::DOWN: head.y += movement_speed; break;
-	case Directions::LEFT: head.x -= movement_speed; break;
-	case Directions::RIGHT: head.x += movement_speed; break;
+	case Directions::UP: head().y -= movement_speed; break;
+	case Directions::DOWN: head().y += movement_speed; break;
+	case Directions::LEFT: head().x -= movement_speed; break;
+	case Directions::RIGHT: head().x += movement_speed; break;
 	default: break;
 	}
-	set_head_position(head);
 }
 
-Position Player::get_head() const noexcept {
+Position& Player::head() noexcept {
 	return parts[0];
-}
-
-
-
-void Player::set_head_position(Position pos) noexcept
-{
-	parts[0].x = pos.x;
-	parts[0].y = pos.y;
 }
 
 void Player::on_key_down(SDL_Keycode key) noexcept {
@@ -84,24 +74,18 @@ Position Player::get_position() const noexcept {
 	return parts[0];
 }
 
-std::vector<Position>::iterator Player::get_parts_begin() noexcept
-{
+std::vector<Position>::iterator Player::get_parts_begin() noexcept {
 	return parts.begin();
 }
 
-std::vector<Position>::iterator Player::get_parts_end() noexcept
-{
+std::vector<Position>::iterator Player::get_parts_end() noexcept {
 	return parts.end();
 }
 
-int Player::get_head_x() const noexcept
-{
-	return get_head().x;
+int Player::get_head_x() const noexcept {
+	return parts[0].x;
 }
 
-int Player::get_head_y() const noexcept
-{
-	return get_head().y;
+int Player::get_head_y() const noexcept {
+	return parts[0].y;
 }
-
-

@@ -57,15 +57,17 @@ void Game::update() noexcept {
 }
 
 bool Game::is_head_colliding_with_part() noexcept {
-	auto isColliding = std::find_if(player.get_parts_begin() + 1, player.get_parts_end(), [&](Position part) {
-		return is_colliding(player.get_head(), part); });
-	return (isColliding != player.get_parts_end() ? true : false);
+	auto isColliding = [&](Position part) {
+		return is_colliding(player.get_position(), part); 
+	};
+	auto collidingObject = std::find_if(player.get_parts_begin() + 1, player.get_parts_end(), isColliding);
+	return (collidingObject != player.get_parts_end() ? true : false);
 }
 
 bool Game::is_player_out_of_bounds() noexcept {
 	if (player.get_head_x() > Config::WINDOW_WIDTH || player.get_head_x() < 0)
 		return true;
-	if (player.get_head_y() > Config::WINDOW_HEIGHT || player.get_head_y() < 0)
+	else if (player.get_head_y() > Config::WINDOW_HEIGHT || player.get_head_y() < 0)
 		return true;
 
 	return false;
