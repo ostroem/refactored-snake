@@ -22,7 +22,7 @@ void Player::update() noexcept {
 }
 
 void Player::grow() noexcept {
-	parts.push_back(get_head());
+	parts.push_back(parts.back());
 }
 
 void Player::reset() noexcept {

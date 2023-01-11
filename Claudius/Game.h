@@ -8,13 +8,13 @@ class Game {
 public:
 	Game() = default;
 	void run();
-	void poll_events(bool& running);
+	void poll_events(bool& running) noexcept;
 public:
-	void update();
-	void render(Renderer& renderer) const noexcept;
+	void update() noexcept;
+	void render(const Renderer& renderer) const noexcept;
 	void on_key_down(SDL_Keycode key) noexcept;
-	bool is_head_colliding_with_part();
-	bool is_player_out_of_bounds();
+	bool is_head_colliding_with_part() noexcept;
+	bool is_player_out_of_bounds() noexcept;
 private:
 	Player player;
 	Apple apple;
