@@ -21,15 +21,8 @@ void Player::update_parts_position() noexcept {
 }
 
 void Player::update_head_position() noexcept {
-	constexpr int movement_speed = 10;
-	switch (direction) {
-	case Directions::NONE: break;
-	case Directions::UP: head().y -= movement_speed; break;
-	case Directions::DOWN: head().y += movement_speed; break;
-	case Directions::LEFT: head().x -= movement_speed; break;
-	case Directions::RIGHT: head().x += movement_speed; break;
-	default: break;
-	}
+	head().x += velocity.x;
+	head().y += velocity.y;
 }
 
 Position& Player::head() noexcept {
@@ -39,17 +32,13 @@ Position& Player::head() noexcept {
 void Player::on_key_down(SDL_Keycode key) noexcept {
 	switch (key) {
 	case SDLK_LEFT:
-		direction = (direction != Directions::RIGHT) ? Directions::LEFT : Directions::RIGHT;
-		break;
+		velocity = {-10, 0}; break;
 	case SDLK_RIGHT:
-		direction = (direction != Directions::LEFT) ? Directions::RIGHT : Directions::LEFT;
-		break;
+		velocity = {10, 0}; break;
 	case SDLK_UP:
-		direction = (direction != Directions::DOWN) ? Directions::UP : Directions::DOWN;
-		break;
+		velocity = {0, -10}; break;
 	case SDLK_DOWN:
-		direction = (direction != Directions::UP) ? Directions::DOWN : Directions::UP;
-		break;
+		velocity = {0, 10}; break;
 	default: break;
 	}
 }
