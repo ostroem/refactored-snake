@@ -10,4 +10,4 @@ struct Position {
 	int y{};
 };
 
-static constexpr Position WINDOW_BOUNDS { Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT };
+static constexpr Position WINDOW_SIZE { Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT };

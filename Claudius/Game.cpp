@@ -1,9 +1,6 @@
 #include <algorithm>
 
 #include "Game.h"
-#include "Window.h"
-#include "Renderer.h"
-#include "SDL_System.h"
 #include "Config.h"
 #include "Utils.h"
 
@@ -25,9 +22,6 @@ bool is_out_of_bounds(Position position, Position bounds) noexcept {
 }
 
 void Game::run() {
-	SDL_System system{ SDL_INIT_EVERYTHING };
-	Window window{};
-	Renderer renderer{ window };
 	bool running = true;
 
 	while (running) {
@@ -53,8 +47,8 @@ void Game::poll_events(bool& running) noexcept {
 void Game::update() noexcept {
 	player.update();
 
-	if (is_out_of_bounds(player.get_position(), WINDOW_BOUNDS) ||
-		is_head_colliding_with_part) {
+	if (is_out_of_bounds(player.get_position(), WINDOW_SIZE) ||
+		is_player_self_colliding()) {
 		player.reset();
 	}
 	else if (is_colliding(player.get_position(), apple.get_position())) {
@@ -63,7 +57,7 @@ void Game::update() noexcept {
 	}
 }
 
-bool Game::is_head_colliding_with_part() noexcept {
+bool Game::is_player_self_colliding() noexcept {
 	auto isColliding = [&](Position part) {
 		return is_colliding(player.get_position(), part); 
 	};
@@ -74,6 +68,7 @@ bool Game::is_head_colliding_with_part() noexcept {
 void Game::render(const Renderer& renderer) const noexcept {
 	player.render(renderer);
 	apple.render(renderer);
+
 	renderer.present();
 }
 

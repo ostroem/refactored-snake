@@ -48,9 +48,8 @@ void Player::grow() noexcept {
 }
 
 void Player::render(const Renderer& renderer) const noexcept {
-	for(const auto& part : parts) {
-		renderer.render(part, SNAKE_COLOR);
-	}
+	std::ranges::for_each(parts, [&](Position p) noexcept {
+		renderer.render(p, SNAKE_COLOR); });
 }
 
 void Player::reset() noexcept {

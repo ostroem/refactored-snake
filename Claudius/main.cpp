@@ -5,7 +5,8 @@
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
 	try {
-		Game{}.run();
+		Game game;
+		game.run();
 	}
 	catch (const std::exception error) {
 		std::cout << error.what() << "\n";

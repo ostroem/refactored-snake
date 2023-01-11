@@ -155,7 +155,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Render.cpp" />
+    <ClCompile Include="SDL_Delete.cpp" />
     <ClCompile Include="SDL_Delete.h" />
+    <ClCompile Include="SDL_System.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
