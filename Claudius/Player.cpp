@@ -56,7 +56,6 @@ void Player::render(const Renderer& renderer) const noexcept {
 void Player::reset() noexcept {
 	parts[0] = { 300, 300 };
 	parts.resize(1);
-	direction = Directions::NONE;
 }
 
 Position Player::get_position() const noexcept {

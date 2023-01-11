@@ -7,14 +7,6 @@
 
 class Player {
 private:
-	enum class Directions {
-		NONE,
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT
-	};
-	Directions direction = Directions::UP;
 	std::vector<Position> parts;
 	Position velocity;
 public:
