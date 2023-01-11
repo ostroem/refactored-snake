@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include <concepts>
 
 Renderer::Renderer(const Window& window)
 	: renderer(SDL_CreateRenderer(window.get_ptr(), -1, SDL_RendererFlags::SDL_RENDERER_ACCELERATED)) {

@@ -1,5 +1,7 @@
-#include "Window.h"
 #include <stdexcept>
+
+#include "Window.h"
+
 Window::Window() // SDL_CreateWIndow could fail, hence we cannot declare it noexcept
 	: window(SDL_CreateWindow(Config::TITLE.data(), 0, 0, Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT, 0)){
 	if (window == nullptr) {
