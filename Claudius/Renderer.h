@@ -3,8 +3,6 @@
 
 #include "Window.h"
 #include "Utils.h"
-#include <concepts>
-
 
 class Renderer {
 public:

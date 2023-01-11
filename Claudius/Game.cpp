@@ -15,7 +15,7 @@ bool is_colliding(Position pos1, Position pos2) noexcept {
 }
 
 void Game::run() {
-	SDL_System system{};
+	SDL_System system{ SDL_INIT_EVERYTHING };
 	Window window{};
 	Renderer renderer{ window };
 	bool running = true;

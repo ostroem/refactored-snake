@@ -1,9 +1,10 @@
 #pragma once
-#include "SDL.h"
 #include <stdexcept>
+#include "SDL.h"
+
 class SDL_System {
 public:
-	SDL_System(Uint32 flag = SDL_INIT_EVERYTHING) { // <-- default constructors should be noexcept HOWEVER, it may throw that's why it's
+	SDL_System(Uint32 flag) { // <-- default constructors should be noexcept HOWEVER, it may throw that's why it's
 		if (SDL_Init(flag) != 0) {					// not noexcept
 			throw std::runtime_error(SDL_GetError());
 		}
