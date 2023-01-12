@@ -25,6 +25,4 @@ public:
 	Position get_position() const noexcept;
 
 	std::vector<Position> get_bodyparts() noexcept;
-	int get_head_x() const noexcept;
-	int get_head_y() const noexcept;
 };

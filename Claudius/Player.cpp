@@ -24,7 +24,7 @@ void Player::update_head_position() noexcept {
 }
 
 Position& Player::head() noexcept {
-	return bodyparts.at(0);
+	return bodyparts.front();
 }
 
 void Player::on_key_down(SDL_Keycode key_) noexcept {
@@ -51,7 +51,7 @@ void Player::render(const Renderer& renderer_) const noexcept {
 }
 
 void Player::reset(Position position_) noexcept {
-	bodyparts.at(0) = position_;
+	head() = position_;
 	bodyparts.resize(1);
 }
 
@@ -60,14 +60,5 @@ std::vector<Position> Player::get_bodyparts() noexcept {
 }
 
 Position Player::get_position() const noexcept {
-	return bodyparts.at(0);
-}
-
-
-int Player::get_head_x() const noexcept {
-	return bodyparts.at(0).x;
-}
-
-int Player::get_head_y() const noexcept {
-	return bodyparts.at(0).y;
+	return bodyparts.front();
 }
