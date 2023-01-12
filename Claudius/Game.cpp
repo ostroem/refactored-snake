@@ -28,10 +28,8 @@ inline Position get_randomized_position() noexcept {
 }
 
 void Game::run() noexcept {
-	bool running = true;
-
-	while (running) {
-		poll_events(running);
+	while (is_running) {
+		poll_events();
 		update();
 		render();
 
@@ -39,11 +37,11 @@ void Game::run() noexcept {
 	}
 }
 
-void Game::poll_events(bool& running_) noexcept {
+void Game::poll_events() noexcept {
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		switch (e.type) {
-		case SDL_QUIT: running_ = false; break;
+		case SDL_QUIT: is_running = false; break;
 		case SDL_KEYDOWN: on_key_down(e.key.keysym.sym); break;
 		default: break;
 		}

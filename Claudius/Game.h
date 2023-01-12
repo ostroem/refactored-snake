@@ -15,14 +15,15 @@ Position get_randomized_position() noexcept;
 class Game {
 public:
 	void run() noexcept;
-	void poll_events(bool& running_) noexcept;
-public:
+private:
+	void poll_events() noexcept;
 	void update() noexcept;
 	void collision_check() noexcept;
 	void render() const noexcept;
 	void on_key_down(SDL_Keycode key_) noexcept;
 private:
-	Player player{ };
+	bool is_running = true;
+	Player player{};
 	Apple apple{};
 
 	SDL_System system{ SDL_INIT_EVERYTHING };

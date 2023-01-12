@@ -23,8 +23,6 @@ public:
 	void grow() noexcept;
 	void reset(Position position_) noexcept;
 	void on_key_down(SDL_Keycode key_) noexcept;
-
 	Position get_position() const noexcept;
-
 	std::vector<Position> get_body_parts() noexcept;
 };
