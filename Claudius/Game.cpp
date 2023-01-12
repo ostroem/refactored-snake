@@ -47,6 +47,11 @@ void Game::poll_events(bool& running_) noexcept {
 void Game::update() noexcept {
 	player.update();
 
+	collision_check();
+}
+
+void Game::collision_check()
+{
 	if (is_out_of_bounds(player.get_position(), WINDOW_SIZE) ||
 		is_player_self_colliding(player.get_position(), player.get_bodyparts())) {
 		player.reset();
