@@ -11,4 +11,3 @@ struct Position {
 };
 
 static constexpr Position WINDOW_SIZE { Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT };
-Position get_randomized_position() noexcept;

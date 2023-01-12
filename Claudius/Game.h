@@ -8,6 +8,9 @@
 #include "Utils.h"
 #include "Config.h"
 
+bool is_out_of_bounds(Position position_, Position bounds_) noexcept;
+bool is_colliding(Position pos1_, Position pos2_) noexcept;
+Position get_randomized_position() noexcept;
 
 class Game {
 public:
@@ -18,7 +21,6 @@ public:
 	void collision_check() noexcept;
 	void render() const noexcept;
 	void on_key_down(SDL_Keycode key_) noexcept;
-	bool is_player_self_colliding(Position player_, std::vector<Position> bodyparts_) noexcept;
 private:
 	Player player{ };
 	Apple apple{};

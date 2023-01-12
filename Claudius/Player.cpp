@@ -4,18 +4,18 @@
 #include "Config.h"
 
 Player::Player() noexcept {
-	bodyparts.push_back(get_randomized_position());
+	body_parts.push_back(get_randomized_position());
 }
 
 void Player::update() noexcept {
-	if (bodyparts.size() > 1) {
+	if (body_parts.size() > 1) {
 		update_parts_position();
 	}
 	update_head_position();
 }
 
 void Player::update_parts_position() noexcept {
-	std::shift_right(bodyparts.begin(), bodyparts.end(), 1);
+	std::shift_right(body_parts.begin(), body_parts.end(), 1);
 }
 
 void Player::update_head_position() noexcept {
@@ -24,7 +24,7 @@ void Player::update_head_position() noexcept {
 }
 
 Position& Player::head() noexcept {
-	return bodyparts.front();
+	return body_parts.front();
 }
 
 void Player::on_key_down(SDL_Keycode key_) noexcept {
@@ -42,23 +42,23 @@ void Player::on_key_down(SDL_Keycode key_) noexcept {
 }
 
 void Player::grow() noexcept {
-	bodyparts.push_back(bodyparts.back());
+	body_parts.push_back(body_parts.back());
 }
 
 void Player::render(const Renderer& renderer_) const noexcept {
-	std::ranges::for_each(bodyparts, [&](Position bodypart) noexcept {
+	std::ranges::for_each(body_parts, [&](Position bodypart) noexcept {
 		renderer_.render(bodypart, SNAKE_COLOR); });
 }
 
 void Player::reset(Position position_) noexcept {
 	head() = position_;
-	bodyparts.resize(1);
+	body_parts.resize(1);
 }
 
-std::vector<Position> Player::get_bodyparts() noexcept {
-	return bodyparts;
+std::vector<Position> Player::get_body_parts() noexcept {
+	return body_parts;
 }
 
 Position Player::get_position() const noexcept {
-	return bodyparts.front();
+	return body_parts.front();
 }

@@ -2,6 +2,8 @@
 #include "Renderer.h"
 #include "Utils.h"
 
+Position get_randomized_position() noexcept;
+
 class Apple {
 private:
 	Position position = get_randomized_position();

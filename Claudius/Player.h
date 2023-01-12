@@ -5,9 +5,11 @@
 #include "Renderer.h"
 #include "Utils.h"
 
+Position get_randomized_position() noexcept;
+
 class Player {
 private:
-	std::vector<Position> bodyparts{};
+	std::vector<Position> body_parts{};
 	Position velocity{};
 public:
 	Player() noexcept;
@@ -24,5 +26,5 @@ public:
 
 	Position get_position() const noexcept;
 
-	std::vector<Position> get_bodyparts() noexcept;
+	std::vector<Position> get_body_parts() noexcept;
 };

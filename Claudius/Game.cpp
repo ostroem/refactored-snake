@@ -8,13 +8,19 @@ bool is_colliding(Position pos1_, Position pos2_) noexcept {
 	else return false;
 }
 
+bool is_colliding_with_self(Position player_, std::vector<Position> body_parts_) noexcept {
+	auto collidedPart = std::find_if(body_parts_.begin() + 1, body_parts_.end(), [&](Position part) noexcept {
+		return is_colliding(player_, part); });
+	return (collidedPart != body_parts_.end() ? true : false);
+}
+
 bool is_out_of_bounds(Position position_, Position bounds_) noexcept {
 	if (position_.x > bounds_.x || position_.x < 0) { return true; }
 	else if (position_.y > bounds_.y || position_.y < 0) { return true; }
 	else return false;
 }
 
-Position get_randomized_position() noexcept {
+inline Position get_randomized_position() noexcept {
 	Position randomizedPosition{};
 	randomizedPosition.x = std::rand() % (Config::WINDOW_WIDTH / TILE_SIZE) * TILE_SIZE;
 	randomizedPosition.y = std::rand() % (Config::WINDOW_HEIGHT / TILE_SIZE) * TILE_SIZE;
@@ -53,19 +59,13 @@ void Game::update() noexcept {
 void Game::collision_check() noexcept
 {
 	if (is_out_of_bounds(player.get_position(), WINDOW_SIZE) ||
-		is_player_self_colliding(player.get_position(), player.get_bodyparts())) {
+		is_colliding_with_self(player.get_position(), player.get_body_parts())) {
 		player.reset(get_randomized_position());
 	}
 	else if (is_colliding(player.get_position(), apple.get_position())) {
 		player.grow();
 		apple.set_position(get_randomized_position());
 	}
-}
-
-bool Game::is_player_self_colliding(Position player_, std::vector<Position> bodyparts_) noexcept {
-	auto collidedPart = std::find_if(bodyparts_.begin() + 1, bodyparts_.end(), [&](Position part) noexcept {
-		return is_colliding(player_, part); });
-	return (collidedPart != bodyparts_.end() ? true : false);
 }
 
 void Game::render() const noexcept {
