@@ -9,12 +9,12 @@
 class Game {
 public:
 	void run() noexcept;
-	void poll_events(bool& running) noexcept;
+	void poll_events(bool& running_) noexcept;
 public:
 	void update() noexcept;
 	void render() const noexcept;
-	void on_key_down(SDL_Keycode key) noexcept;
-	bool is_player_self_colliding() noexcept;
+	void on_key_down(SDL_Keycode key_) noexcept;
+	bool is_player_self_colliding(Position player_, std::vector<Position> parts_) noexcept;
 private:
 	Player player;
 	Apple apple;

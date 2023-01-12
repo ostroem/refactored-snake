@@ -4,18 +4,18 @@
 #include "Config.h"
 #include "Utils.h"
 
-bool is_colliding(Position pos1, Position pos2) noexcept {
-	if (pos1.x == pos2.x && pos1.y == pos2.y) {
+bool is_colliding(Position pos1_, Position pos2_) noexcept {
+	if (pos1_.x == pos2_.x && pos1_.y == pos2_.y) {
 		return true;
 	}
 	return false;
 }
 
-bool is_out_of_bounds(Position position, Position bounds) noexcept {
-	if (position.x > bounds.x || position.x < 0) {
+bool is_out_of_bounds(Position position_, Position bounds_) noexcept {
+	if (position_.x > bounds_.x || position_.x < 0) {
 		return true;
 	}
-	else if (position.y > bounds.y || position.y < 0) {
+	else if (position_.y > bounds_.y || position_.y < 0) {
 		return true;
 	}
 	return false;
@@ -33,11 +33,11 @@ void Game::run() noexcept {
 	}
 }
 
-void Game::poll_events(bool& running) noexcept {
+void Game::poll_events(bool& running_) noexcept {
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		switch (e.type) {
-		case SDL_QUIT: running = false; break;
+		case SDL_QUIT: running_ = false; break;
 		case SDL_KEYDOWN: on_key_down(e.key.keysym.sym); break;
 		default: break;
 		}
@@ -48,7 +48,7 @@ void Game::update() noexcept {
 	player.update();
 
 	if (is_out_of_bounds(player.get_position(), WINDOW_SIZE) ||
-		is_player_self_colliding()) {
+		is_player_self_colliding(player.get_position(), player.get_bodyparts())) {
 		player.reset();
 	}
 	else if (is_colliding(player.get_position(), apple.get_position())) {
@@ -57,12 +57,10 @@ void Game::update() noexcept {
 	}
 }
 
-bool Game::is_player_self_colliding() noexcept {
-	auto isColliding = [&](Position part) {
-		return is_colliding(player.get_position(), part); 
-	};
-	auto collidingObject = std::find_if(player.get_parts_begin() + 1, player.get_parts_end(), isColliding);
-	return (collidingObject != player.get_parts_end() ? true : false);
+bool Game::is_player_self_colliding(Position player_, std::vector<Position> bodyparts_) noexcept {
+	auto collidedPart = std::find_if(bodyparts_.begin() + 1, bodyparts_.end(), [&](Position part) noexcept {
+		return is_colliding(player_, part); });
+	return (collidedPart != bodyparts_.end() ? true : false);
 }
 
 void Game::render() const noexcept {
@@ -72,6 +70,6 @@ void Game::render() const noexcept {
 	renderer.present();
 }
 
-void Game::on_key_down(SDL_Keycode key) noexcept {
-	player.on_key_down(key);
+void Game::on_key_down(SDL_Keycode key_) noexcept {
+	player.on_key_down(key_);
 }

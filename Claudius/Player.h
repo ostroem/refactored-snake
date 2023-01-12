@@ -7,7 +7,7 @@
 
 class Player {
 private:
-	std::vector<Position> parts;
+	std::vector<Position> bodyparts;
 	Position velocity;
 public:
 	Player() noexcept;
@@ -24,9 +24,7 @@ public:
 
 	Position get_position() const noexcept;
 
-	std::vector<Position>::iterator get_parts_begin() noexcept;
-	std::vector<Position>::iterator get_parts_end() noexcept;
-
+	std::vector<Position> get_bodyparts() noexcept;
 	int get_head_x() const noexcept;
 	int get_head_y() const noexcept;
 };

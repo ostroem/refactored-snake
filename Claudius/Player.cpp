@@ -6,18 +6,18 @@
 
 Player::Player() noexcept {
 	constexpr Position pos = { 300, 300 };
-	parts.push_back(pos);
+	bodyparts.push_back(pos);
 }
 
 void Player::update() noexcept {
-	if (parts.size() > 1) {
+	if (bodyparts.size() > 1) {
 		update_parts_position();
 	}
 	update_head_position();
 }
 
 void Player::update_parts_position() noexcept {
-	std::shift_right(parts.begin(), parts.end(), 1);
+	std::shift_right(bodyparts.begin(), bodyparts.end(), 1);
 }
 
 void Player::update_head_position() noexcept {
@@ -26,7 +26,7 @@ void Player::update_head_position() noexcept {
 }
 
 Position& Player::head() noexcept {
-	return parts[0];
+	return bodyparts[0];
 }
 
 void Player::on_key_down(SDL_Keycode key) noexcept {
@@ -44,35 +44,32 @@ void Player::on_key_down(SDL_Keycode key) noexcept {
 }
 
 void Player::grow() noexcept {
-	parts.push_back(parts.back());
+	bodyparts.push_back(bodyparts.back());
 }
 
 void Player::render(const Renderer& renderer) const noexcept {
-	std::ranges::for_each(parts, [&](Position p) noexcept {
+	std::ranges::for_each(bodyparts, [&](Position p) noexcept {
 		renderer.render(p, SNAKE_COLOR); });
 }
 
 void Player::reset() noexcept {
-	parts[0] = { 300, 300 };
-	parts.resize(1);
+	bodyparts[0] = { 300, 300 };
+	bodyparts.resize(1);
+}
+
+std::vector<Position> Player::get_bodyparts() noexcept {
+	return bodyparts;
 }
 
 Position Player::get_position() const noexcept {
-	return parts[0];
+	return bodyparts[0];
 }
 
-std::vector<Position>::iterator Player::get_parts_begin() noexcept {
-	return parts.begin();
-}
-
-std::vector<Position>::iterator Player::get_parts_end() noexcept {
-	return parts.end();
-}
 
 int Player::get_head_x() const noexcept {
-	return parts[0].x;
+	return bodyparts[0].x;
 }
 
 int Player::get_head_y() const noexcept {
-	return parts[0].y;
+	return bodyparts[0].y;
 }
