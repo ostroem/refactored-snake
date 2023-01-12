@@ -4,10 +4,10 @@
 
 class Apple {
 private:
-	Position position;
+	Position position = get_randomized_position();
 public:
-	Apple() noexcept;
 	void render(const Renderer& renderer) const noexcept;
-	void randomize_position() noexcept;
 	Position get_position() const noexcept;
+	void set_position(Position position_) noexcept;
+
 };

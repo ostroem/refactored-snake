@@ -1,12 +1,10 @@
 #include <algorithm>
 
 #include "Player.h"
-#include "Renderer.h"
 #include "Config.h"
 
 Player::Player() noexcept {
-	constexpr Position pos = { 300, 300 };
-	bodyparts.push_back(pos);
+	bodyparts.push_back(get_randomized_position());
 }
 
 void Player::update() noexcept {
@@ -29,8 +27,8 @@ Position& Player::head() noexcept {
 	return bodyparts[0];
 }
 
-void Player::on_key_down(SDL_Keycode key) noexcept {
-	switch (key) {
+void Player::on_key_down(SDL_Keycode key_) noexcept {
+	switch (key_) {
 	case SDLK_LEFT:
 		velocity = {-10, 0}; break;
 	case SDLK_RIGHT:
@@ -47,13 +45,13 @@ void Player::grow() noexcept {
 	bodyparts.push_back(bodyparts.back());
 }
 
-void Player::render(const Renderer& renderer) const noexcept {
-	std::ranges::for_each(bodyparts, [&](Position p) noexcept {
-		renderer.render(p, SNAKE_COLOR); });
+void Player::render(const Renderer& renderer_) const noexcept {
+	std::ranges::for_each(bodyparts, [&](Position bodypart) noexcept {
+		renderer_.render(bodypart, SNAKE_COLOR); });
 }
 
-void Player::reset() noexcept {
-	bodyparts[0] = { 300, 300 };
+void Player::reset(Position position_) noexcept {
+	bodyparts[0] = position_;
 	bodyparts.resize(1);
 }
 

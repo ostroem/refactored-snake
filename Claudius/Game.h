@@ -5,6 +5,9 @@
 #include "SDL_System.h"
 #include "Apple.h"
 #include "Player.h"
+#include "Utils.h"
+#include "Config.h"
+
 
 class Game {
 public:
@@ -12,12 +15,13 @@ public:
 	void poll_events(bool& running_) noexcept;
 public:
 	void update() noexcept;
+	void collision_check() noexcept;
 	void render() const noexcept;
 	void on_key_down(SDL_Keycode key_) noexcept;
-	bool is_player_self_colliding(Position player_, std::vector<Position> parts_) noexcept;
+	bool is_player_self_colliding(Position player_, std::vector<Position> bodyparts_) noexcept;
 private:
-	Player player;
-	Apple apple;
+	Player player{ };
+	Apple apple{};
 
 	SDL_System system{ SDL_INIT_EVERYTHING };
 	Window window{ Config::TITLE.data(), Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT };

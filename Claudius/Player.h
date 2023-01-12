@@ -7,20 +7,20 @@
 
 class Player {
 private:
-	std::vector<Position> bodyparts;
-	Position velocity;
+	std::vector<Position> bodyparts{};
+	Position velocity{};
 public:
 	Player() noexcept;
 	void update() noexcept;
-	void render(const Renderer& renderer) const noexcept;
+	void render(const Renderer& renderer_) const noexcept;
 private:
 	void update_parts_position() noexcept;
 	void update_head_position() noexcept;
 	Position& head() noexcept;
 public:
 	void grow() noexcept;
-	void reset() noexcept;
-	void on_key_down(SDL_Keycode key) noexcept;
+	void reset(Position position_) noexcept;
+	void on_key_down(SDL_Keycode key_) noexcept;
 
 	Position get_position() const noexcept;
 
