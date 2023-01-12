@@ -1,4 +1,3 @@
-#include <cstdlib>
 #include "Apple.h"
 #include "Config.h"
 
