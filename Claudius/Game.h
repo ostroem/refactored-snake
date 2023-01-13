@@ -23,8 +23,8 @@ private:
 	void on_key_down(SDL_Keycode key_) noexcept;
 private:
 	bool is_running = true;
-	Player player{};
-	Apple apple{};
+	Player player{ get_randomized_position() };
+	Apple apple{ get_randomized_position() };
 
 	SDL_System system{ SDL_INIT_EVERYTHING };
 	Window window{ Config::TITLE.data(), Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT };

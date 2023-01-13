@@ -3,8 +3,8 @@
 #include "Player.h"
 #include "Config.h"
 
-Player::Player() noexcept {
-	body_parts.push_back(get_randomized_position());
+Player::Player(Position position_) noexcept {
+	body_parts.push_back(position_);
 }
 
 void Player::update() noexcept {
@@ -30,13 +30,13 @@ Position& Player::head() noexcept {
 void Player::on_key_down(SDL_Keycode key_) noexcept {
 	switch (key_) {
 	case SDLK_LEFT:
-		velocity = {-10, 0}; break;
+		velocity = {-TILE_SIZE, 0}; break;
 	case SDLK_RIGHT:
-		velocity = {10, 0}; break;
+		velocity = { TILE_SIZE, 0}; break;
 	case SDLK_UP:
-		velocity = {0, -10}; break;
+		velocity = {0, -TILE_SIZE }; break;
 	case SDLK_DOWN:
-		velocity = {0, 10}; break;
+		velocity = {0, TILE_SIZE }; break;
 	default: break;
 	}
 }

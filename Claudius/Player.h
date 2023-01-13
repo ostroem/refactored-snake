@@ -5,14 +5,12 @@
 #include "Renderer.h"
 #include "Utils.h"
 
-Position get_randomized_position() noexcept;
-
 class Player {
 private:
 	std::vector<Position> body_parts{};
 	Position velocity{};
 public:
-	Player() noexcept;
+	Player(Position position_) noexcept;
 	void update() noexcept;
 	void render(const Renderer& renderer_) const noexcept;
 private:
